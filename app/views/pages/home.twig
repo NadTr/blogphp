@@ -1,0 +1,35 @@
+{% extends "layout.twig" %}
+
+
+{% block content %}
+<!-- page home pour un exemple de l'utilisation de twig -->
+
+<h1>Mes articles</h1>
+
+<form method="post" action="{{path_for('add')}}">
+	<div class="form-group">
+		<label for="formGroupExampleInput">title</label>
+		<input type="text" class="form-control" id="formGroupExampleInput" placeholder="title" name="title">
+	</div>
+	<div class="form-group">
+		<label for="formGroupExampleInput2">Text</label>
+		<textarea name="text" class="form-control">Text</textarea>
+	</div>
+	<input type="submit" name="add article">
+</form>
+
+
+{% for row in result %}
+<h3>{{row.titre}}</h3>
+<p>{{row.texte}} </p>
+<form method="post" action="{{path_for('del', {'id':row.id})}}">
+	<input type="hidden" name="_METHOD" value="delete"/>
+	<input type="submit" value="Delete"/>
+
+</form>
+<p><a href="{{path_for('edit', {'id':row.id})}}">Edit</a></p>
+
+
+{% endfor %}
+{% endblock %}
+

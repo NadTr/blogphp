@@ -1,0 +1,29 @@
+{% extends "layout.twig" %}
+
+
+{% block content %}
+<!-- page edit pour un exemple de l'utilisation de twig avec l 'edit de ( qui sera en fait la page d'admin pour l 'edit des articles' -->
+<p>Formulaire de edit</p>
+
+<form method="post" action="{{path_for('update', {'id':id})}}">
+	<div class="form-group">
+		<label for="formGroupExampleInput">title</label>
+		<input type="text" class="form-control" id="formGroupExampleInput" name="title" value="{{titre}}">
+	</div>
+	<div class="form-group">
+		<label for="formGroupExampleInput2">Text</label>
+		<textarea name="text" class="form-control">{{texte}}</textarea>
+	</div>
+	<input type="hidden" name="_METHOD" value="put"/> 
+	<input type="submit" name="add article">
+</form>
+
+
+<!-- dans un formulaire le input hidden est super important
+il sert a mettre la methode que l'on utilise dans les routes
+$app->put('/article/{id}', \App\Controllers\PagesController::class . ":upd")->setName('update');
+
+ici la méthode put -->
+
+{% endblock %}
+
