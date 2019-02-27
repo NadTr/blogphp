@@ -8,11 +8,11 @@ use Slim\Http\Response;
 $app->get("/", \App\Controllers\PagesController::class . ":home");
 
 	//add article
-$app->post('/add', \App\Controllers\PagesController::class . ":add")->setName('add');
+$app->post('/add', \App\Controllers\ArticlesController::class . ":add")->setName('add');
 	// delete 
-$app->delete('/del/{id}', \App\Controllers\PagesController::class . ":del")->setName('del');
+$app->delete('/del/{id}', \App\Controllers\ArticlesController::class . ":del")->setName('del');
 
 	//display edit
-$app->get("/article/edit/{id}", \App\Controllers\PagesController::class . ":edit")->setName('edit');
+$app->get("/article/edit/{id}", \App\Controllers\ArticlesController::class . ":edit")->setName('edit');
 	// update 
-$app->put('/article/{id}', \App\Controllers\PagesController::class . ":upd")->setName('update');
+$app->put('/article/{id}', \App\Controllers\ArticlesController::class . ":upd")->setName('update');

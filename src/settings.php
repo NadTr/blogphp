@@ -24,7 +24,7 @@ return [
         // Database connection settings
         'db' => [
             'host' => 'localhost',
-            'dbname' =>'becode',
+            'dbname' =>'blogDb',
             'user' => 'becode',
             'pass' => 'becode',
         ],
