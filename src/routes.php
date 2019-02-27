@@ -16,6 +16,8 @@ $app->get("/article/edit/{id}", \App\Controllers\ArticlesController::class . ":e
 	// update
 $app->put('/article/{id}', \App\Controllers\ArticlesController::class . ":upd")->setName('update');
 
-
+  //register
 $app->get('/register', \App\Controllers\RegisterController::class . ":register" )->setName('register');
 $app->post('/submit/register', \App\Controllers\RegisterController::class . ":subreg" );
+ //Login
+ $app->get('/login', \App\Controllers\LoginController::class . ":login" )->setName('login');

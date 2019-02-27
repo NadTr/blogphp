@@ -14,16 +14,20 @@ class RegisterController extends Controller {
   }
 
     public function subreg(Request $request, Response $response, array $args) {
-      $pseudo = $request->getParsedBody()['pseudo'];
-      $email = $request->getParsedBody()['email'];
+      $firstname = $request->getParsedBody()['firstname'];
+      $lastname = $request->getParsedBody()['lastname'];
+      $username = $request->getParsedBody()['username'];
       $password = $request->getParsedBody()['password'];
       $hashedpass= password_hash($password, PASSWORD_BCRYPT);
-      $admin='1';
-      $stmt = $this->container->db->prepare("INSERT INTO users (pseudo, email, password, admin) VALUES (:pseudo, :email, :password, :admin)");
-      $stmt->bindValue('pseudo', $pseudo, PDO::PARAM_STR);
+      $email = $request->getParsedBody()['email'];
+      $permission='3';    //1 Admin, 2 Auteur, 3 Utilisateur lambda
+      $stmt = $this->container->db->prepare("INSERT INTO users (firstname, lastname, username, pass, permission, email) VALUES (:firstname, :lastname, :username, :pass, :permission, :email)");
+      $stmt->bindValue('firstname', $firstname, PDO::PARAM_STR);
+      $stmt->bindValue('lastname', $lastname, PDO::PARAM_STR);
+      $stmt->bindValue('username', $username, PDO::PARAM_STR);
+      $stmt->bindValue('pass', $hashedpass, PDO::PARAM_STR);
+      $stmt->bindValue('permission', $permission, PDO::PARAM_STR);
       $stmt->bindValue('email', $email, PDO::PARAM_STR);
-      $stmt->bindValue('password', $hashedpass, PDO::PARAM_STR);
-      $stmt->bindValue('admin', $admin, PDO::PARAM_STR);
       $stmt->execute();
       $args['result'] = $stmt;
       return $response->withRedirect('/', 301);

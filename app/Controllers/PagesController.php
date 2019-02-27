@@ -10,10 +10,10 @@ use Slim\Http\Response;
 class PagesController extends Controller {
 
 	public function home(Request $request, Response $response){
-		
-		$result = $this->container->db->query('SELECT * FROM articles')->fetchAll();
+
+		$result = $this->container->db->query('SELECT * FROM articles, users')->fetchAll();
 		$args['result'] = $result;
-		
+
 		$this->render($response,'pages/home.twig', $args);
 	}
 
