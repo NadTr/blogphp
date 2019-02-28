@@ -26,12 +26,10 @@ class LoginController extends Controller {
 		  if(password_verify($stmt[0],$password)){
 				$_SESSION['username'] = $username;
 				$_SESSION['permission']=$stmt[1];
-
+				return $response->withRedirect('/', 301);
 
 			}
 
-		    return $response->withRedirect('/', 301);
-			}
 		}
 	}
 
