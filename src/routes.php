@@ -21,3 +21,4 @@ $app->get('/register', \App\Controllers\RegisterController::class . ":register" 
 $app->post('/submit/register', \App\Controllers\RegisterController::class . ":subreg" );
  //Login
  $app->get('/login', \App\Controllers\LoginController::class . ":login" )->setName('login');
+ $app->get('/submit/login', \App\Controllers\LoginController::class . ":sublogin" );
