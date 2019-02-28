@@ -18,8 +18,6 @@ class ArticlesController extends Controller {
 		$prep->bindValue('title', $title,  \PDO::PARAM_STR);
 		$prep->bindValue('text', $Atext,  \PDO::PARAM_STR);
 
-		var_dump( $prep->bindValue('title', $title,  \PDO::PARAM_STR));
-		var_dump($prep->bindValue('title', $title,  \PDO::PARAM_STR));
 
 		$prep->execute();
 		
