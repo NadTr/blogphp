@@ -6,19 +6,24 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 
 
+
 class ArticlesController extends Controller {
 
 	public function add(Request $request, Response $response){
 
 		$title = $request->getParsedBody()['title']; //checks _POST [IS PSR-7 compliant]
 		$Atext = $request->getParsedBody()['text']; //checks _POST [IS PSR-7 compliant]
+		$author = $_SESSION['id'];
+		
 
-		$prep = $this->container->db->prepare('INSERT INTO articles(title, text) VALUES(:title, :text)');
+
+		$prep = $this->container->db->prepare('INSERT INTO articles(title, text, author, date) VALUES(:title, :text, :author, NOW())');
 
 		$prep->bindValue('title', $title,  \PDO::PARAM_STR);
 		$prep->bindValue('text', $Atext,  \PDO::PARAM_STR);
-
-
+		$prep->bindValue('author', $author,  \PDO::PARAM_STR);
+		
+	
 		$prep->execute();
 
 		$args['result'] = $prep;
@@ -65,7 +70,7 @@ class ArticlesController extends Controller {
 		$id = $args['id'];
 		$prep = $this->container->db->prepare('SELECT * FROM articles WHERE id =:id');
 		$prep->bindParam("id", $id);
-
+	
 		$prep->execute();
 		$res=$prep->fetch();
 
