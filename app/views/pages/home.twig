@@ -23,6 +23,7 @@
 <h3>{{row.title}}</h3>
 <p>{{row.text}} </p>
 <p>	{{row.date}}	<p>
+<p> auteur(s) : {{row.username}}</p>
 <form method="post" action="{{path_for('del', {'id':row.id})}}">
 	<input type="hidden" name="_METHOD" value="delete"/>
 	<input type="submit" value="Delete"/>
@@ -33,4 +34,3 @@
 
 {% endfor %}
 {% endblock %}
-
