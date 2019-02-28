@@ -20,5 +20,7 @@ $app->put('/article/{id}', \App\Controllers\ArticlesController::class . ":upd")-
 $app->get('/register', \App\Controllers\RegisterController::class . ":register" )->setName('register');
 $app->post('/submit/register', \App\Controllers\RegisterController::class . ":subreg" );
  //Login
- $app->get('/login', \App\Controllers\LoginController::class . ":login" )->setName('login');
- $app->post('/submit/login', \App\Controllers\LoginController::class . ":sublogin" )->setname('log');
+$app->get('/login', \App\Controllers\LoginController::class . ":login" )->setName('login');
+$app->post('/submit/login', \App\Controllers\LoginController::class . ":sublogin" );
+
+$app->get('/logout', \App\Controllers\LogoutController::class . ":logout" )->setName('logout');

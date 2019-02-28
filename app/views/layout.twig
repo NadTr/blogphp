@@ -38,8 +38,12 @@
     aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a href="./login" class="btn btn-outline-primary">Login</a>
-  <a href="./register" class="btn btn-outline-secondary ml-1" >Register</a>
+  {% if session.permission == 3 %}
+    <a href="./logout" class="btn btn-danger">Log 0ut</a>
+  {% else %}
+    <a href="./login" class="btn btn-outline-primary">Log In</a>
+    <a href="./register" class="btn btn-outline-secondary ml-1" >Register</a>
+  {% endif %}
 </nav>
 
   <div class="container">
