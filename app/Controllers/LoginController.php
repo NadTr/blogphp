@@ -14,22 +14,26 @@ class LoginController extends Controller {
   }
 
   public function sublogin(Request $request, Response $response, array $args) {
-		if (isset($_POST['name'], $_POST['password'])) {
-	    $username = $request->getParsedBody()['username'];
-	    $password = $request->getParsedBody()['password'];
+		if (isset($_POST['getusername'], $_POST['getpassword'])) {
 
-			$stmt = $this->container->db->prepare("SELECT password, permission FROM users WHERE username = :username");
+			$username = $request->getParsedBody()['getusername'];
+			$password = $request->getParsedBody()['getpassword'];
+			$stmt = $this->container->db->prepare("SELECT pass, permission FROM users WHERE username = :username");
 			$stmt ->bindParam('username', $username);
 			$stmt->execute();
-			$res=$stmt->fetchAll();
-
-		  if(password_verify($stmt[0],$password)){
+			$res=$stmt->fetch();
+		  if(password_verify($password,$res['pass'])){
+				var_dump('2');
 				$_SESSION['username'] = $username;
-				$_SESSION['permission']=$stmt[1];
+				$_SESSION['permission']=$res['permission'];
 				return $response->withRedirect('/', 301);
-
 			}
-
+			else{
+				return $response->withRedirect('/login', 301);
+			}
+		}
+		else{
+			return $response->withRedirect('/register', 301);
 		}
 	}
 

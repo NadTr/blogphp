@@ -3,7 +3,7 @@
 
 {% block content %}
  <h1 class="text-center mt-4">Login on our blog</h1>
-<form action="/submit/login" method="post">
+<form action="{{path_for('log')}}" method="post">
   <div class="form-group">
     <label for="username">Username</label>
     <input type="text" class="form-control" id="username" name="getusername" placeholder="Enter username" required>
@@ -12,6 +12,7 @@
     <label for="passw">Password (8 characters minimum):</label>
     <input type="password" class="form-control" id="passw" name="getpassword" placeholder="Enter password" minlength="8" required>
   </div>
+  <input type="hidden" name="_METHOD" value="post"/>
   <button class="btn btn-primary btn-sm ml-auto" type="submit" name="button">Submit</button>
 </form>
 
