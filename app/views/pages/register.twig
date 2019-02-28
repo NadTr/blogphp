@@ -2,8 +2,10 @@
 
 
 {% block content %}
+
 <h1 class="text-center mt-4">Register on our blog</h1>
 <form action="/submit/register" method="post">
+
   <div class="form-group">
     <label for="firstname">Firstname</label>
     <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter firstname" required>
@@ -29,9 +31,5 @@
     <input type="password" class="form-control" id="repeatpassword" name="repeatpassword" placeholder="Enter password" minlength="8" required>
   </div>
   <button class="btn btn-primary btn-sm ml-auto" type="submit" name="button">Submit</button>
-</form>
-
-
-
-
+ </form>
 {% endblock %}
