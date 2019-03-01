@@ -17,7 +17,9 @@ class ArticlesController extends Controller {
 		
 
 
-		$prep = $this->container->db->prepare('INSERT INTO articles(title, text, author, date) VALUES(:title, :text, :author, NOW())');
+		$prep = $this->container->db->prepare('
+			INSERT INTO articles(title, text, author, date) 
+			VALUES(:title, :text, :author, NOW())');
 
 		$prep->bindValue('title', $title,  \PDO::PARAM_STR);
 		$prep->bindValue('text', $Atext,  \PDO::PARAM_STR);
@@ -26,25 +28,12 @@ class ArticlesController extends Controller {
 	
 		$prep->execute();
 
-		$args['result'] = $prep;
+		$args['articles'] = $prep;
 
 		return $response->withRedirect('/',301);
 
 	}
-	public function del(Request $request, Response $response, $args){
-
-		$id = $args['id']; //checks _GET [IS PSR-7 compliant]
-
-		$prep = $this->container->db->prepare('DELETE FROM articles where id=:id');
-
-		$prep->bindParam("id", $id);
-		$prep->execute();
-
-		$args['result'] = $prep;
-
-		return $response->withRedirect('/',301);
-
-	}
+	
 	public function upd(Request $request, Response $response, $args){
 
 		$id = $args['id']; //checks _GET [IS PSR-7 compliant]
@@ -52,7 +41,8 @@ class ArticlesController extends Controller {
 		$Atext = $request->getParsedBody()['text']; //checks _POST [IS PSR-7 compliant]
 		$date = $request->getParsedBody()['date']; //checks _POST [IS PSR-7 compliant]
 
-		$prep = $this->container->db->prepare('UPDATE articles set title=:title, text=:text , date=:date where id=:id');
+		$prep = $this->container->db->prepare('
+			UPDATE articles set title=:title, text=:text , date=:date where id=:id');
 
 		$prep->bindParam("id", $id);
 		$prep->bindValue('title', $title,  \PDO::PARAM_STR);
@@ -60,21 +50,22 @@ class ArticlesController extends Controller {
 		$prep->bindParam('date', $date,  \PDO::PARAM_STR);
 		$prep->execute();
 
-		$args['result'] = $prep;
+		$args['articles'] = $prep;
 
-		return $response->withRedirect('/',301);
+		return $response->withRedirect($this->container->router->pathFor('admin'),301);
 
 	}
 	public function edit(Request $request, Response $response,$args){
 
 		$id = $args['id'];
-		$prep = $this->container->db->prepare('SELECT * FROM articles WHERE id =:id');
+		$prep = $this->container->db->prepare('
+			SELECT * FROM articles WHERE id =:id');
 		$prep->bindParam("id", $id);
 	
 		$prep->execute();
 		$res=$prep->fetch();
 
-		$this->render($response,'pages/edit.twig', $res);
+		$this->render($response,'pages/ArticleEdit.twig', $res);
 	}
 
 }

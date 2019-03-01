@@ -11,8 +11,16 @@ class PagesController extends Controller {
 
 	public function home(Request $request, Response $response){
 
-		$result = $this->container->db->query('SELECT articles.id, title, text, date, username FROM articles INNER JOIN users on articles.author=users.id')->fetchAll();
-		$args['result'] = $result;
+		$article = $this->container->db->query('
+			SELECT 
+			articles.id, 
+			title, 
+			text, 
+			date, 
+			username as author 
+			FROM articles 
+			INNER JOIN users on articles.author=users.id')->fetchAll();
+		$args['articles'] = $article;
 
 		$this->render($response,'pages/home.twig', $args);
 	}
