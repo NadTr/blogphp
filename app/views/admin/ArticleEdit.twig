@@ -1,4 +1,4 @@
-{% extends "layout.twig" %}
+{% extends "layoutAdmin.twig" %}
 
 
 {% block content %}
@@ -13,7 +13,7 @@
 	<div class="form-group">
 		<label for="formGroupExampleInput2">Text</label>
 		<textarea name="text" class="form-control">{{text}}</textarea>
-		<input type="date" name="date" value="{{date}}">
+		<input type="text" name="date" value="{{date}}">
 	</div>
 	<input type="hidden" name="_METHOD" value="put"/> 
 	<input type="submit" name="add article">

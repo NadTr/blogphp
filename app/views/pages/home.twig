@@ -1,36 +1,34 @@
 {% extends "layout.twig" %}
 
-
 {% block content %}
-<!-- page home pour un exemple de l'utilisation de twig -->
 
 <h1>Mes articles</h1>
 
-<form method="post" action="{{path_for('add')}}">
-	<div class="form-group">
-		<label for="formGroupExampleInput">title</label>
-		<input type="text" class="form-control" id="formGroupExampleInput" placeholder="title" name="title">
-	</div>
-	<div class="form-group">
-		<label for="formGroupExampleInput2">Text</label>
-		<textarea name="text" class="form-control">Text</textarea>
-	</div>
-	<input type="submit" name="add article">
-</form>
+{% if (session.permission <= 2) and (session.permission > 0) %}
 
+	<form method="post" action="{{path_for('add')}}">
+		<div class="form-group">
+			<label for="formGroupExampleInput">title</label>
+			<input type="text" class="form-control" id="formGroupExampleInput" placeholder="title" name="title">
+		</div>
+		<div class="form-group">
+			<label for="formGroupExampleInput2">Text</label>
+			<textarea name="text" class="form-control" placeholder="text" ></textarea>
+		</div>
+		<input type="submit" name="add article">
+	</form>
+	{% endif %}
 
-{% for row in result %}
-<h3>{{row.title}}</h3>
-<p>{{row.text}} </p>
-<p>	{{row.date}}	<p>
-<p> auteur(s) : {{row.username}}</p>
-<form method="post" action="{{path_for('del', {'id':row.id})}}">
-	<input type="hidden" name="_METHOD" value="delete"/>
-	<input type="submit" value="Delete"/>
+	{% for article in articles  %}
 
-</form>
-<p><a href="{{path_for('edit', {'id':row.id})}}">Edit</a></p>
+	<h3>{{article.title}}</h3>
+	<p>{{article.text}} </p>
+	<p>	{{article.date|date()}}<p>
+	<p> auteur(s) : {{article.author}}</p>
 
+	{% if session.permission == 1 %}
 
-{% endfor %}
+	<p><a href="{{path_for('edit', {'id':article.id})}}">Edit</a></p>
+	{% endif %}
+	{% endfor %}
 {% endblock %}
