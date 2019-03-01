@@ -24,6 +24,11 @@ $app->get('/register', \App\Controllers\RegisterController::class . ":register" 
 	$app->post('/submit/login', \App\Controllers\LoginController::class . ":sublogin" );
 	$app->get('/logout', \App\Controllers\LogoutController::class . ":logout" )->setName('logout');
 
+	// profil
+	$app->get('/profile', \App\Controllers\ProfileController::class . ":diplayProfile" )->setName('profile');
+	$app->get('/editprofile', \App\Controllers\ProfileController::class . ":editProfile" )->setName('editprofile');
+	$app->post('/submitchanges', \App\Controllers\ProfileController::class . ":submitchanges" )->setName('submitchanges');
+
 //---------------------------------------------------------------------------------------------------
 // ROUTES ADMIN 
 $app->get('/admin', \App\Controllers\AdminArticlesController::class . ":admin")->setName('admin');
@@ -35,6 +40,11 @@ $app->get('/admin', \App\Controllers\AdminArticlesController::class . ":admin")-
 	$app->get("/admin/article/edit/{id}", \App\Controllers\AdminArticlesController::class . ":edit")->setName('AdminEdit');
 	// update
 	$app->put('/admin/article/{id}', \App\Controllers\AdminArticlesController::class . ":upd")->setName('update');
-
 // users
 $app->get("/admin/users", \App\Controllers\AdminUserController::class . ":adminuser")->setName('adminUsers');
+
+
+
+
+
+

@@ -4,7 +4,7 @@
 
 <h1>Mes articles</h1>
 
-	{% if session.permission == 1 %}
+{% if (session.permission <= 2) and (session.permission > 0) %}
 
 	<form method="post" action="{{path_for('add')}}">
 		<div class="form-group">

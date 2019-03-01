@@ -1,0 +1,9 @@
+{% extends "layout.twig" %}
+{% block content %}
+	<h1>Mon profil</h1>
+	<h3>Username : {{username}}</h3>
+	<p>Lastname : {{lastname}} </p>
+	<p>Firstname : {{firstname}}<p>
+	<p>Email : {{email}}</p>
+	<a href="./editprofile" class="btn btn-success">Edit profile</a>
+{% endblock %}
