@@ -1,0 +1,13 @@
+
+@import "_variables.scss";
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "_bootswatch.scss";
+
+img {
+  height:400px !important;
+  object-fit: cover;
+}
+
+#titleNav {
+  font-size: 26px;
+}
