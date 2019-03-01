@@ -41,16 +41,11 @@
 
 
 
-  {% if session.permission == 1 %}
-  <a href="./login" class="btn btn-outline-primary">{{session.username}}</a>
-  <a href="./logout" class="btn btn-outline-primary">LogOut</a>
- 
-
-  {% else %}
-  <a href="./login" class="btn btn-outline-primary">Login</a>
-  <a href="./register" class="btn btn-outline-secondary ml-1" >Register</a>
-
+  {% if session.permission ==1 %}
+  <a href="{{path_for(profile)}}" class="text-info font-weight-bold  mr-4">{{session.username}}</a>
+  <a href="{{path_for(logout)}}" class="btn btn-outline-primary">LogOut</a>
   {% endif %}
+
 </nav>
 
 <div class="container">
