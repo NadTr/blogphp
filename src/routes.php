@@ -24,3 +24,7 @@ $app->get('/login', \App\Controllers\LoginController::class . ":login" )->setNam
 $app->post('/submit/login', \App\Controllers\LoginController::class . ":sublogin" );
 
 $app->get('/logout', \App\Controllers\LogoutController::class . ":logout" )->setName('logout');
+
+$app->get('/profile', \App\Controllers\ProfileController::class . ":diplayProfile" )->setName('profile');
+$app->get('/editprofile', \App\Controllers\ProfileController::class . ":editProfile" )->setName('editprofile');
+$app->post('/submitchanges', \App\Controllers\ProfileController::class . ":submitchanges" )->setName('submitchanges');
