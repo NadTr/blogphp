@@ -1,17 +1,16 @@
 {% extends "layoutAdmin.twig" %}
 
 {% block content %}   
-
-
-<h1>Les users</h1>
+	<h1>Les users</h1>
 
 	{% for user in users %}
-		<p>prenom: {{user.firstame}}</p>
+		<p>prenom: {{user.firstname}}</p>
 		<p>nom:{{user.lastname}}</p>
 		<p>mail{{user.email}}</p>
 		<p>permission{{user.permission}}</p>
+		<p><a href="{{path_for('usersedit', {'id':user.id})}}">Edit</a></p>
+		
 	{% endfor %}
-
 {% endblock %}
 
 
