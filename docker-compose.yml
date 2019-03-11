@@ -4,7 +4,7 @@ services:
 
   # La base de données PostgreSQL. Elle est configurée de façon à être joignable sur
   # localhost:5432 .
-  # 
+  #
   # Utilisateur: becode
   # Mot de passe: becode
   # Base de données par défault: blogDb
@@ -16,13 +16,13 @@ services:
     volumes:
       - dbvolume:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: becode
-      POSTGRES_PASSWORD: becode
-      POSTGRES_DB: blogDb
+      POSTGRES_USER: evy
+      POSTGRES_PASSWORD: evy
+      POSTGRES_DB: evy
 
   # Un serveur Adminer pour pouvoir tester les fonctionnalités de la base de données et
   # faire du debugging. Il est joignable avec un simple browser en utilisant http://localhost:9000 .
-  # 
+  #
   # Voir la configuration de PostgreSQL pour les accès.
 
   adminer:

@@ -2,12 +2,14 @@
 return [
     'settings' => [
         'displayErrorDetails' => true, // set to false in production
-        'logger'=> [
+	/*
+	'logger'=> [
             'name'=> 'slim-app',
-            'path'=>'php://stdout',
+            'path'=>'./log.txt',
             'level'=>\Monolog\Logger::DEBUG,
             ],
         'addContentLengthHeader' => false, // Allow the web server to send the content-length header
+	*/
 
         // Renderer settings
         'renderer' => [
@@ -23,10 +25,10 @@ return [
 
         // Database connection settings
         'db' => [
-            'host' => 'localhost',
-            'dbname' =>'blogDb',
-            'user' => 'becode',
-            'pass' => 'becode',
+            'host' => 'jepsen.local',
+            'dbname' =>'evy',
+            'user' => 'evy',
+            'pass' => 'evy',
         ],
     ]
 ];

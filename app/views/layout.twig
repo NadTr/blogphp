@@ -4,9 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>BeCode/JavaScript for the Web Exercise</title>
+  <title>Blog PHP</title>
 
-  <link rel="icon" href="./_shared/img/becode-seal.png" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="css/theme.css">
 
@@ -46,11 +45,12 @@
       </form>
       <div id="log">
       {% if session.permission ==1 %}
-      <a href="{{path_for('profile')}}" class="text-info font-weight-bold  mr-4">{{session.username}}</a>
-      <a href="{{path_for('logout')}}" class="btn btn-outline-primary">LogOut</a>
+      <!-- utiliser domain pour remplacer ~evy dans routes.php -->
+      <a href="{{path_for('profile', {'domain': domain})}}" class="text-info font-weight-bold  mr-4">{{session.username}}</a>
+      <a href="{{path_for('logout', {'domain': domain})}}" class="btn btn-outline-primary">LogOut</a>
       {% else %}
-      <a href="{{path_for('login')}}" class="btn btn-outline-primary">Login</a>
-      <a href="{{path_for('register')}}" class="btn btn-outline-secondary ml-1" >Register</a>
+      <a href="{{path_for('login', {'domain': domain})}}" class="btn btn-outline-primary">Login</a>
+      <a href="{{path_for('register', {'domain': domain})}}" class="btn btn-outline-secondary ml-1" >Register</a>
       {% endif %}
       </div>
     </div>
@@ -60,7 +60,7 @@
   <img src="img/image1.jpg" class="w-100" id="entete"/>
   <!--FIN D'IMAGE D'ENTETE-->
 
-  
+
 
 <div class="container">
   <div class="content">

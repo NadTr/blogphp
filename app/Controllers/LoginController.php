@@ -25,19 +25,19 @@ class LoginController extends Controller {
 			$res=$stmt->fetch();
 
 			if(password_verify($password,$res['pass'])){
-				
+
 				$_SESSION['username'] = $username;
 				$_SESSION['permission']=$res['permission'];
 				$_SESSION['id']=$res['id'];
 				return $response->withRedirect('/', 301);
 			}
-			
+
 			else{
 
 				return $response->withRedirect('/login', 301);
 			}
 		}
-		
+
 		else{
 
 			return $response->withRedirect('/register', 301);
