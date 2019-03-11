@@ -18,17 +18,26 @@
 		<input type="submit" name="add article">
 	</form>
 	{% endif %}
-
+	<div class="container">
 	{% for article in articles  %}
 
-	<h3>{{article.title}}</h3>
-	<p>{{article.text}} </p>
-	<p>	{{article.date|date()}}<p>
-	<p> auteur(s) : {{article.author}}</p>
+       <div class="col-md-10 blogShort">
+           <h1 id="titleArt">{{article.title}}</h1>
+           <article>
+						 	 <p>{{article.text}}</p>
+							 <p>
+							 {{article.date|date()}}
+							 </p>
+							 <p> auteur(s) : {{article.author}}</p>
+					</article>
+
+       </div>
+
 
 	{% if session.permission == 1 %}
 
-	<p><a href="{{path_for('edit', {'id':article.id})}}">Edit</a></p>
+		<p><a href="{{path_for('edit', {'id':article.id})}}">Edit</a></p>
 	{% endif %}
-	{% endfor %}
+{% endfor %}
+</div>
 {% endblock %}

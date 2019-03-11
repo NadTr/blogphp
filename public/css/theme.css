@@ -7174,3 +7174,11 @@ img {
 
 #titleNav {
   font-size: 26px; }
+
+#imgArt {
+  width: 100px;
+  height: 100px;
+  object-fit: cover; }
+
+#titleArt {
+  text-align: center; }
