@@ -40,9 +40,14 @@ $app->get('/admin', \App\Controllers\AdminArticlesController::class . ":admin")-
 	$app->get("/admin/article/edit/{id}", \App\Controllers\AdminArticlesController::class . ":edit")->setName('AdminEdit');
 	// update
 	$app->put('/admin/article/{id}', \App\Controllers\AdminArticlesController::class . ":upd")->setName('update');
+
 // users
 $app->get("/admin/users", \App\Controllers\AdminUserController::class . ":adminuser")->setName('adminUsers');
-
+	
+	// display edit
+	$app->get('/admin/users/edit/{id}', \App\Controllers\AdminUserController::class . ":usersedit")->setName('usersedit');
+	// update
+	$app->put('/admin/user/{id}', \App\Controllers\AdminUserController::class . ":usersupd")->setName('userupdate');
 
 
 

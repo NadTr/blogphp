@@ -1,0 +1,22 @@
+{% extends "layoutAdmin.twig" %}
+
+
+{% block content %}
+
+<p>Formulaire de edit</p>
+
+<form method="post" action="{{path_for('userupdate', {'id':id})}}">
+	<input type="texte" name="username" value="{{username}}">
+	<input type="texte" name="lastname" value="{{lastname}}">
+	<input type="texte" name="firstname" value="{{firstname}}">
+	<input type="texte" name="permission" value="{{permission}}">
+	<input type="texte" name="email" value="{{email}}">
+
+	<input type="hidden" name="_METHOD" value="put"/> 
+	<input type="submit" name="add user">
+</form>
+
+
+
+{% endblock %}
+
