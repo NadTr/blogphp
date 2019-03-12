@@ -3,39 +3,48 @@
 
 {% block content %}
 
-<h1>Mes articles</h1>
+	<h1>Mes articles</h1>
 
-{% if (session.permission <= 2) and (session.permission > 0) %}
+	{% if (session.permission <= 2) and (session.permission > 0) %}
 
-	<form method="post" action="{{path_for('add')}}">
-		<div class="form-group">
-			<label for="formGroupExampleInput">title</label>
-			<input type="text" class="form-control" id="formGroupExampleInput" placeholder="title" name="title">
-		</div>
-		<div class="form-group">
-			<label for="formGroupExampleInput2">Text</label>
-			<textarea name="text" class="form-control" placeholder="text" ></textarea>
-		</div>
-		<input type="submit" name="add article">
-	</form>
+		<form method="post" action="{{path_for('add')}}">
+			<div class="form-group">
+				<label for="formGroupExampleInput">title</label>
+				<input type="text" class="form-control" id="formGroupExampleInput" placeholder="title" name="title">
+			</div>
+			<div class="form-group">
+				<label for="formGroupExampleInput2">Text</label>
+				<textarea name="text" class="form-control" placeholder="text" ></textarea>
+			</div>
+			<input type="submit" name="add article">
+			<div>
+				<input type="checkbox" id="categories" name="categories">
+				<label for="horns">
+					{% for categorie in categories %} 
+						{{ categorie.name }} 
+					{% endfor %}
+				</label>
+			</div>
+		</form>
 	{% endif %}
 
-	{% for article in articles  %}
+	<h1>Articles</h1>
 
-	<h3>{{article.title}}</h3>
-	<p>{{article.text}} </p>
-	<p>	{{article.date|date()}}<p>
-	<p> auteur(s) : {{article.author}}</p>
-	<p>categorie(s): 
+	{% for article in articles %}
+
+	<h3>titre: {{article.title}}</h3>
+	<p>	date: {{article.date|date()}}<p>
+	<p>auteur(s):{{article.author}}</p>
+	<p>categorie(s):
 		
 		{% for categorie in article.categories %} 
-			{{ categorie.name }} 
+			{{ categorie }} 
 		{% endfor %}
 	</p>
 
-	{% if session.permission == 1 %}
+			{% if session.permission == 1 %}
 
-	<p><a href="{{path_for('edit', {'id':article.id})}}">Edit</a></p>
-	{% endif %}
-	{% endfor %}
-{% endblock %}
+				<p><a href="{{path_for('edit', {'id':article.id})}}">Edit</a></p>
+			{% endif %}
+		{% endfor %}
+	{% endblock %}

@@ -43,7 +43,7 @@ class PagesController extends Controller {
 		}
 		$args['articles'] = $articles;
 		
-		$this->render($response,'admin/ArticlesAdmin.twig', $args);
+		$this->render($response,'pages/home.twig', $args);
 
 	}
 }
