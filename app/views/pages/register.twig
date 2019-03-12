@@ -32,4 +32,11 @@
   </div>
   <button class="btn btn-primary btn-sm ml-auto" type="submit" name="button">Submit</button>
  </form>
+
+ {% for item in alert %}
+   <div class="alert alert-primary" role="alert">
+     {{item}}
+   </div>
+ {% endfor %}
+
 {% endblock %}
