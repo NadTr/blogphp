@@ -3,10 +3,10 @@
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-// ROUTES 
+// ROUTES
 //articles
 $app->get("/", \App\Controllers\PagesController::class . ":home");
-	
+
 	//add article
 	$app->post('/add', \App\Controllers\ArticlesController::class . ":add")->setName('add');
 
@@ -18,7 +18,7 @@ $app->get("/", \App\Controllers\PagesController::class . ":home");
 //register
 $app->get('/register', \App\Controllers\RegisterController::class . ":register" )->setName('register');
 	$app->post('/submit/register', \App\Controllers\RegisterController::class . ":subreg" );
- 
+
  	//Login
 	$app->get('/login', \App\Controllers\LoginController::class . ":login" )->setName('login');
 	$app->post('/submit/login', \App\Controllers\LoginController::class . ":sublogin" );
@@ -30,7 +30,7 @@ $app->get('/register', \App\Controllers\RegisterController::class . ":register" 
 	$app->post('/submitchanges', \App\Controllers\ProfileController::class . ":submitchanges" )->setName('submitchanges');
 
 //---------------------------------------------------------------------------------------------------
-// ROUTES ADMIN 
+// ROUTES ADMIN
 $app->get('/admin', \App\Controllers\AdminArticlesController::class . ":admin")->setName('admin');
 
 // articles
@@ -42,9 +42,3 @@ $app->get('/admin', \App\Controllers\AdminArticlesController::class . ":admin")-
 	$app->put('/admin/article/{id}', \App\Controllers\AdminArticlesController::class . ":upd")->setName('update');
 // users
 $app->get("/admin/users", \App\Controllers\AdminUserController::class . ":adminuser")->setName('adminUsers');
-
-
-
-
-
-
