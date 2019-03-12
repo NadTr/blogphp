@@ -41,11 +41,26 @@ class AdminArticlesController extends Controller {
 
 		$args['articles'] = $prep;
 
-		return $response->withRedirect('/admin',301);
+		return $response->withRedirect($this->container->router->pathFor('adminHome'),301);
 
 	}
 
-	public function upd(Request $request, Response $response, array $args){
+	
+	public function articlesedit(Request $request, Response $response,array $args){
+
+		$id = $args['id'];
+		$prep = $this->container->db->prepare('
+			SELECT * FROM articles WHERE id =:id');
+		$prep->bindParam("id", $id);
+	
+		$prep->execute();
+		$res=$prep->fetch();
+
+		$this->render($response,'admin/ArticleAdminEdit.twig', $res);
+	}
+
+
+	public function articlesupd(Request $request, Response $response, array $args){
 
 		$id = $args['id']; //checks _GET [IS PSR-7 compliant]
 		$title = $request->getParsedBody()['title']; //checks _POST [IS PSR-7 compliant]
@@ -63,24 +78,9 @@ class AdminArticlesController extends Controller {
 
 		$args['articles'] = $prep;
 
-		return $response->withRedirect('admin');
+		return $response->withRedirect($this->container->router->pathFor('articlesAdmin'),301);
 
 	}
-	public function edit(Request $request, Response $response,array $args){
-
-		$id = $args['id'];
-		$prep = $this->container->db->prepare('
-			SELECT * FROM articles WHERE id =:id');
-		$prep->bindParam("id", $id);
-	
-		$prep->execute();
-		$res=$prep->fetch();
-
-		$this->render($response,'admin/ArticleEdit.twig', $res);
-	}
-
-
-
 
 	
 

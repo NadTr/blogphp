@@ -7,7 +7,7 @@ use Slim\Http\Response;
 
 class AdminController extends Controller {
 
-	public function admin(Request $request, Response $response){
+	public function admin(Request $request, Response $response, array $args){
 
 		$articles = $this->container->db->query('
 			SELECT

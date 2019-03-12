@@ -4,8 +4,8 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 
 // ROUTES
-//articles
-$app->get("/", \App\Controllers\PagesController::class . ":home");
+
+$app->get("/", \App\Controllers\PagesController::class . ":home")->setName('home');
 
 	//add article
 	$app->post('/add', \App\Controllers\ArticlesController::class . ":add")->setName('add');
@@ -17,11 +17,11 @@ $app->get("/", \App\Controllers\PagesController::class . ":home");
 
 //register
 $app->get('/register', \App\Controllers\RegisterController::class . ":register" )->setName('register');
-	$app->post('/submit/register', \App\Controllers\RegisterController::class . ":subreg" );
+	$app->post('/submit/register', \App\Controllers\RegisterController::class . ":subreg" )->setName('subreg');
 
  	//Login
 	$app->get('/login', \App\Controllers\LoginController::class . ":login" )->setName('login');
-	$app->post('/submit/login', \App\Controllers\LoginController::class . ":sublogin" );
+	$app->post('/submit/login', \App\Controllers\LoginController::class . ":sublogin" )->setName('sublogin');
 	$app->get('/logout', \App\Controllers\LogoutController::class . ":logout" )->setName('logout');
 
 	// profil
@@ -31,22 +31,25 @@ $app->get('/register', \App\Controllers\RegisterController::class . ":register" 
 
 //---------------------------------------------------------------------------------------------------
 // ROUTES ADMIN
-$app->get('/admin', \App\Controllers\AdminController::class . ":admin")->setName('adminHome');
+$app->get("/admin", \App\Controllers\AdminController::class . ":admin")->setName('adminHome');
 
 // articles
-	//articles
-	$app->get('/admin/articles', \App\Controllers\AdminArticlesController::class . ":articles")->setName('articlesAdmin');
+$app->get("/admin/articles", \App\Controllers\AdminArticlesController::class . ":articles")->setName('articlesAdmin');
+	
 	// delete
-	$app->delete('/admin/articles/del/{id}', \App\Controllers\AdminArticlesController::class . ":articlesdel")->setName('del');
+	$app->delete('/admin/article/del/{id}', \App\Controllers\AdminArticlesController::class . ":articlesdel")->setName('articleAdminDel');
+	
 	//display edit
-	$app->get("/admin/article/edit/{id}", \App\Controllers\AdminArticlesController::class . ":edit")->setName('AdminEdit');
+	$app->get("/admin/article/edit/{id}", \App\Controllers\AdminArticlesController::class . ":articlesedit")->setName('articleAdminEdit');
+	
 	// update
-	$app->put('/admin/article/{id}', \App\Controllers\AdminArticlesController::class . ":upd")->setName('update');
+	$app->put('/admin/article/{id}', \App\Controllers\AdminArticlesController::class . ":articlesupd")->setName('articleAdminUpdate');
 
 // users
-$app->get("/admin/users", \App\Controllers\AdminUserController::class . ":adminuser")->setName('adminUsers');
+$app->get("/admin/users", \App\Controllers\AdminUserController::class . ":adminuser")->setName('usersAdmin');
 
 	// display edit
-	$app->get('/admin/users/edit/{id}', \App\Controllers\AdminUserController::class . ":usersedit")->setName('usersedit');
+	$app->get('/admin/users/edit/{id}', \App\Controllers\AdminUserController::class . ":usersedit")->setName('userAdminEdit');
+	
 	// update
-	$app->put('/admin/user/{id}', \App\Controllers\AdminUserController::class . ":usersupd")->setName('userupdate');
+	$app->put('/admin/user/{id}', \App\Controllers\AdminUserController::class . ":usersupd")->setName('userAdminUpdate');

@@ -8,7 +8,7 @@
 		<p>nom:{{user.lastname}}</p>
 		<p>mail{{user.email}}</p>
 		<p>permission{{user.permission}}</p>
-		<p><a href="{{path_for('usersedit', {'id':user.id})}}">Edit</a></p>
+		<p><a href="{{path_for('userAdminEdit', {'id':user.id})}}">Edit</a></p>
 		
 	{% endfor %}
 {% endblock %}

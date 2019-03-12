@@ -30,7 +30,7 @@ class ArticlesController extends Controller {
 
 		$args['articles'] = $prep;
 
-		return $response->withRedirect('/',301);
+		return $response->withRedirect($this->container->router->pathFor('home'),301);
 
 	}
 	
@@ -52,7 +52,7 @@ class ArticlesController extends Controller {
 
 		$args['articles'] = $prep;
 
-		return $response->withRedirect($this->container->router->pathFor('admin'),301);
+		return $response->withRedirect($this->container->router->pathFor('home'),301);
 
 	}
 	public function edit(Request $request, Response $response,$args){
@@ -65,7 +65,7 @@ class ArticlesController extends Controller {
 		$prep->execute();
 		$res=$prep->fetch();
 
-		$this->render($response,'pages/ArticleEdit.twig', $res);
+		$this->render($response,'pages/articleEdit.twig', $res);
 	}
 
 }

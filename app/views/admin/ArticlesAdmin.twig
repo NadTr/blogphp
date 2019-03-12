@@ -10,12 +10,12 @@
 	<p>date: {{article.date}}</p>
 	<p>auteur(s):{{article.author}}</p>
 	
-	<form method="post" action="{{path_for('del', {'id':article.id})}}">
+	<form method="post" action="{{path_for('articleAdminDel', {'id':article.id})}}">
 		<input type="hidden" name="_METHOD" value="delete"/>
 		<input type="submit" value="Delete"/>
 	</form>
 
-	<p><a href="{{path_for('AdminEdit', {'id':article.id})}}">Edit</a></p>
+	<p><a href="{{path_for('articleAdminEdit', {'id':article.id})}}">Edit</a></p>
 
 	{% endfor %}
 

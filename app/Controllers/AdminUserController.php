@@ -62,7 +62,7 @@ class AdminUserController extends Controller {
 
 		$args['user'] = $prep;
 
-		return $response->withRedirect($this->container->router->pathFor('adminUsers'),301);
+		return $response->withRedirect($this->container->router->pathFor('usersAdmin'),301);
 
 	}
 
