@@ -30,8 +30,7 @@ class RegisterController extends Controller {
 		  $stmt->bindValue('pass', $hashedpass, PDO::PARAM_STR);
 		  $stmt->bindValue('permission', $permission, PDO::PARAM_STR);
 		  $stmt->bindValue('email', $email, PDO::PARAM_STR);
-		  $stmt->bindValue('password', $hashedpass, PDO::PARAM_STR);
-		  $stmt->bindValue('admin', $admin, PDO::PARAM_STR);
+		  $stmt->bindValue('pass', $hashedpass, PDO::PARAM_STR);
 		  $stmt->execute();
 		  $args['result'] = $stmt;
 		  return $response->withRedirect('/', 301);
