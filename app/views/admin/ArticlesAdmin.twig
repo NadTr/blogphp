@@ -7,8 +7,15 @@
 	{% for article in articles %}
 
 	<h3>titre: {{article.title}}</h3>
-	<p>date: {{article.date}}</p>
+	<p>	date: {{article.date|date()}}<p>
 	<p>auteur(s):{{article.author}}</p>
+	<p>categorie(s):
+		
+		{% for categorie in article.categories %} 
+			{{ categorie }} 
+		{% endfor %}
+	</p>
+
 	
 	<form method="post" action="{{path_for('articleAdminDel', {'id':article.id})}}">
 		<input type="hidden" name="_METHOD" value="delete"/>

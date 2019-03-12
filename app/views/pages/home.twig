@@ -26,6 +26,12 @@
 	<p>{{article.text}} </p>
 	<p>	{{article.date|date()}}<p>
 	<p> auteur(s) : {{article.author}}</p>
+	<p>categorie(s): 
+		
+		{% for categorie in article.categories %} 
+			{{ categorie.name }} 
+		{% endfor %}
+	</p>
 
 	{% if session.permission == 1 %}
 
