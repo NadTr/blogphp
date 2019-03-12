@@ -7,7 +7,7 @@ use Slim\Http\Response;
 
 class AdminArticlesController extends Controller {
 
-	public function admin(Request $request, Response $response){
+	public function articles(Request $request, Response $response){
 
 		$articles = $this->container->db->query('
 			SELECT
@@ -20,39 +20,16 @@ class AdminArticlesController extends Controller {
 			FROM articles
 			INNER JOIN users on articles.author=users.id')->fetchAll();
 
-		$comments = $this->container->db->query('
-			SELECT
-				comments.title as title,
-				comments.date as date
-				
-			FROM comments ')->fetchAll();
-
-		$categories = $this->container->db->query('
-			SELECT
-				categories.name as categoriename 
-				
-			FROM categories ')->fetchAll();
-
-		$users = $this->container->db->query('
-			SELECT
-								
-				users.firstname as firstname, 
-				users.lastname as lastname, 
-				users.username as username, 
-				users.permission as permission, 
-				users.email as email
-				
-			FROM users ')->fetchAll();
+		
 		
 		$args['articles'] = $articles;
-		$args['comments'] = $comments;
-		$args['categories']= $categories;
-		$args['users'] = $users;
-
+		
 		$this->render($response,'admin/ArticlesAdmin.twig', $args);
 	}
 
-	public function articlesdel(Request $request, Response $response, $args){
+
+
+	public function articlesdel(Request $request, Response $response, array $args){
 
 		$id = $args['id']; //checks _GET [IS PSR-7 compliant]
 
@@ -68,7 +45,7 @@ class AdminArticlesController extends Controller {
 
 	}
 
-	public function upd(Request $request, Response $response, $args){
+	public function upd(Request $request, Response $response, array $args){
 
 		$id = $args['id']; //checks _GET [IS PSR-7 compliant]
 		$title = $request->getParsedBody()['title']; //checks _POST [IS PSR-7 compliant]
@@ -89,7 +66,7 @@ class AdminArticlesController extends Controller {
 		return $response->withRedirect('admin');
 
 	}
-	public function edit(Request $request, Response $response,$args){
+	public function edit(Request $request, Response $response,array $args){
 
 		$id = $args['id'];
 		$prep = $this->container->db->prepare('
@@ -113,4 +90,5 @@ class AdminArticlesController extends Controller {
 
 
 
+ 
  

@@ -31,11 +31,13 @@ $app->get('/register', \App\Controllers\RegisterController::class . ":register" 
 
 //---------------------------------------------------------------------------------------------------
 // ROUTES ADMIN
-$app->get('/admin', \App\Controllers\AdminArticlesController::class . ":admin")->setName('admin');
+$app->get('/admin', \App\Controllers\AdminController::class . ":admin")->setName('adminHome');
 
 // articles
+	//articles
+	$app->get('/admin/articles', \App\Controllers\AdminArticlesController::class . ":articles")->setName('articlesAdmin');
 	// delete
-	$app->delete('/admin/del/{id}', \App\Controllers\AdminArticlesController::class . ":articlesdel")->setName('del');
+	$app->delete('/admin/articles/del/{id}', \App\Controllers\AdminArticlesController::class . ":articlesdel")->setName('del');
 	//display edit
 	$app->get("/admin/article/edit/{id}", \App\Controllers\AdminArticlesController::class . ":edit")->setName('AdminEdit');
 	// update
