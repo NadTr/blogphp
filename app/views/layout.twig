@@ -42,28 +42,26 @@
        </li>
       </ul>
     </div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
-    aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
 
-
-
-  {% if session.permission ==1 %}
+  {% if session.permission >=1 %}
   <a href="{{path_for('profile')}}" class="text-info font-weight-bold  mr-4">{{session.username}}</a>
   <a href="{{path_for('logout')}}" class="btn btn-outline-primary">LogOut</a>
-
-
 
   {% else %}
   <a href="{{path_for('login')}}" class="btn btn-outline-primary">Login</a>
   <a href="{{path_for('register')}}" class="btn btn-outline-secondary ml-1" >Register</a>
 
   {% endif %}
+
+  <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
+  aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
 </nav>
 
 <div class="container">
+  
   <div class="content">
    {% block content %}   {% endblock %}
  </div>
