@@ -27,8 +27,6 @@ class ArticlesController extends Controller {
 		
 		$categories = $Atext = $request->getParsedBody()['Du blabla'];
 
-
-
 		$prep = $this->container->db->prepare('
 			INSERT INTO categoriesarticles(categorie, article) 
 			VALUES(:categorie, :article )');
