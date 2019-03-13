@@ -14,6 +14,8 @@ $app->get("/", \App\Controllers\PagesController::class . ":home")->setName('home
 	$app->get("/article/edit/{id}", \App\Controllers\ArticlesController::class . ":edit")->setName('edit');
 	// update
 	$app->put('/article/{id}', \App\Controllers\ArticlesController::class . ":upd")->setName('update');
+	
+	
 
 //register
 $app->get('/register', \App\Controllers\RegisterController::class . ":register" )->setName('register');
@@ -29,6 +31,7 @@ $app->get('/register', \App\Controllers\RegisterController::class . ":register" 
 	$app->get('/editprofile', \App\Controllers\ProfileController::class . ":editProfile" )->setName('editprofile');
 	$app->post('/submitchanges', \App\Controllers\ProfileController::class . ":submitchanges" )->setName('submitchanges');
 
+	
 //---------------------------------------------------------------------------------------------------
 // ROUTES ADMIN
 $app->get("/admin", \App\Controllers\AdminController::class . ":admin")->setName('adminHome');

@@ -15,20 +15,32 @@ class ArticlesController extends Controller {
 		$Atext = $request->getParsedBody()['text']; //checks _POST [IS PSR-7 compliant]
 		$author = $_SESSION['id'];
 		
-
-
 		$prep = $this->container->db->prepare('
 			INSERT INTO articles(title, text, author, date) 
-			VALUES(:title, :text, :author, NOW())');
+			VALUES(:title, :text, :author, NOW()) RETURNING id');
 
 		$prep->bindValue('title', $title,  \PDO::PARAM_STR);
 		$prep->bindValue('text', $Atext,  \PDO::PARAM_STR);
 		$prep->bindValue('author', $author,  \PDO::PARAM_STR);
+		$id = $prep->execute();
+
 		
-	
-		$prep->execute();
+		$categories = $Atext = $request->getParsedBody()['Du blabla'];
+
+
+
+		$prep = $this->container->db->prepare('
+			INSERT INTO categoriesarticles(categorie, article) 
+			VALUES(:categorie, :article )');
+
+		$prep->bindValue('categorie', $categorie,  \PDO::PARAM_STR);
+		$prep->bindValue('article', $article,  \PDO::PARAM_STR);
+		
+		$prep->execute(); 
+
 
 		$args['articles'] = $prep;
+		$args['categories'] = $prep;
 
 		return $response->withRedirect($this->container->router->pathFor('home'),301);
 

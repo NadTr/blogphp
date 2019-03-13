@@ -9,7 +9,7 @@ use Slim\Http\Response;
 
 class PagesController extends Controller {
 
-	public function home(Request $request, Response $response){
+	public function home(Request $request, Response $response, array $args){
 
 		$articles = $this->container->db->query('
 			SELECT
@@ -27,6 +27,8 @@ class PagesController extends Controller {
 			FROM categoriesarticles
 			iNNER JOIN categories on categorie = categories.id')->fetchAll();
 
+		
+
 		foreach ($articles as &$article) {
 			# crée une boite vide pour y mettre les categories de mes articles 
 			$article['categories'] = array();
@@ -41,9 +43,18 @@ class PagesController extends Controller {
 				}
 			}
 		}
+
+		$categoriesAll = $this->container->db->query('
+			SELECT
+				*
+			FROM categories ')->fetchAll();
+		
+
 		$args['articles'] = $articles;
+		$args['categoriesAll']= $categoriesAll;
 		
 		$this->render($response,'pages/home.twig', $args);
 
 	}
+
 }
