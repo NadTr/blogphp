@@ -8,23 +8,13 @@
 	{% if (session.permission <= 2) and (session.permission > 0) %}
 
 		<form method="post" action="{{path_for('add')}}">
-			<div class="form-group">
-				<label for="formGroupExampleInput">title</label>
-				<input type="text" class="form-control" id="formGroupExampleInput" placeholder="title" name="title">
-			</div>
-			<div class="form-group">
-				<label for="formGroupExampleInput2">Text</label>
-				<textarea name="text" class="form-control" placeholder="text" ></textarea>
-			</div>
+			<input type="text" placeholder="title" name="title">
+			<textarea name="text"></textarea>
+			{% for categories in categoriesAll %} 				
+  			<input type="checkbox" name="{{categories.id}}" value="categories"> 
+				{{ categories.name }} 
+			{% endfor %}
 			<input type="submit" name="add article">
-			<div>
-				<input type="checkbox" id="categories" name="categories">
-				<label for="horns">
-					{% for categorie in categories %} 
-						{{ categorie.name }} 
-					{% endfor %}
-				</label>
-			</div>
 		</form>
 	{% endif %}
 
