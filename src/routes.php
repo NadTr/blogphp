@@ -57,6 +57,14 @@ $app->get("/admin/categories", \App\Controllers\AdminCategoriesController::class
 	// delete categorie
 	$app->delete('/admin/categories/del/{id}', \App\Controllers\AdminCategoriesController::class . ":admincatdel")->setName('categoriesAdminDel');
 
+// comments
+$app->get("/admin/commentaires", \App\Controllers\AdminCommentairesController::class . ":admincommentaire")->setName('commentairesAdmin');
+
+// delete comments
+	$app->delete('/admin/commentaires/del/{id}', \App\Controllers\AdminCommentairesController::class . ":admincommentairesdel")->setName('commentairesAdminDel');
+
+	
+
 // users
 $app->get("/admin/users", \App\Controllers\AdminUserController::class . ":adminuser")->setName('usersAdmin');
 
