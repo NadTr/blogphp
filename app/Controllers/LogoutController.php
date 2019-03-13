@@ -10,6 +10,6 @@ class LogoutController extends Controller {
 
 	public function logout(Request $request, Response $response, array $args){
 		 session_destroy();
-		return $response->withRedirect('/', 301);
+		return $response->withRedirect($this->container->router->pathFor('home'), 301);
   }
 }
