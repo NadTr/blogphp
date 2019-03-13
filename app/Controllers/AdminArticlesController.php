@@ -7,7 +7,7 @@ use Slim\Http\Response;
 
 class AdminArticlesController extends Controller {
 
-	public function articles(Request $request, Response $response){
+	public function articles(Request $request, Response $response, array $args){
 
 		$articles = $this->container->db->query('
 			SELECT
@@ -58,7 +58,7 @@ class AdminArticlesController extends Controller {
 
 		$args['articles'] = $prep;
 
-		return $response->withRedirect($this->container->router->pathFor('adminHome'),301);
+		return $response->withRedirect($this->container->router->pathFor('articlesAdmin'),301);
 
 	}
 

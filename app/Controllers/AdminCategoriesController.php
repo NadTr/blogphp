@@ -33,7 +33,7 @@ class AdminCategoriesController extends Controller {
 		
 		$args['categories']= $categories;
 		
-		return $response->withRedirect('/admin/categories',301);
+		return $response->withRedirect($this->container->router->pathFor('categoriesAdmin'),301);
 		
 	}
 	public function admincatdel(Request $request, Response $response, array $args){
@@ -48,7 +48,7 @@ class AdminCategoriesController extends Controller {
 
 		$args['categories']= $categories;
 
-		return $response->withRedirect('/admin/categories',301);
+		return $response->withRedirect($this->container->router->pathFor('categoriesAdmin'),301);
 
 	}
 

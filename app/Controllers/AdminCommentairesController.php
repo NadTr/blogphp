@@ -32,7 +32,7 @@ class AdminCommentairesController extends Controller {
 
 		$args['comment']= $commentaires;
 
-		return $response->withRedirect('/admin/commentaires',301);
+		return $response->withRedirect($this->container->router->pathFor('commentairesAdmin'),301);
 
 	}
 
