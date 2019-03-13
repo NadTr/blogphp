@@ -48,6 +48,15 @@ $app->get("/admin/articles", \App\Controllers\AdminArticlesController::class . "
 	// update
 	$app->put('/admin/article/{id}', \App\Controllers\AdminArticlesController::class . ":articlesupd")->setName('articleAdminUpdate');
 
+//catégories
+$app->get("/admin/categories", \App\Controllers\AdminCategoriesController::class . ":admincat")->setName('categoriesAdmin');
+
+	//add catégories
+	$app->post('/admin/categories/add', \App\Controllers\AdminCategoriesController::class . ":adminaddcat")->setName('categoriesAdminAdd');
+
+	// delete categorie
+	$app->delete('/admin/categories/del/{id}', \App\Controllers\AdminCategoriesController::class . ":admincatdel")->setName('categoriesAdminDel');
+
 // users
 $app->get("/admin/users", \App\Controllers\AdminUserController::class . ":adminuser")->setName('usersAdmin');
 

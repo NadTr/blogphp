@@ -1,0 +1,24 @@
+{% extends "layoutAdmin.twig" %}
+
+{% block content %}   
+
+	<h1>Catégories</h1>
+
+	<form method="post" action="{{path_for('categoriesAdminAdd')}}">
+		<input type="text" placeholder="name" name="name">		
+		<input type="submit" name="add catégorie">
+	</form>
+
+
+	{% for categorie in categories %}
+
+		<p>catégories: {{categorie.categoriename}}</p>
+
+		<form method="post" action="{{path_for('categoriesAdminDel', {'id':categorie.id})}}">
+			<input type="hidden" name="_METHOD" value="delete"/>
+			<input type="submit" value="Delete"/>
+		</form>
+
+	{% endfor %}
+
+{% endblock %}
