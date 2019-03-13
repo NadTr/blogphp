@@ -31,8 +31,8 @@
 			{{ categorie }} 
 		{% endfor %}
 	</p>
-
-			{% if session.permission == 1 %}
+		
+			{% if session.permission == 1 and (article.authorid == session.id) %}
 
 				<p><a href="{{path_for('edit', {'id':article.id})}}">Edit</a></p>
 			{% endif %}

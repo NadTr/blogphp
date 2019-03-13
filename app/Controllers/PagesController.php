@@ -17,7 +17,8 @@ class PagesController extends Controller {
 				articles.id as id,
 				articles.date as date,
 				articles.text as text,
-				users.username as author
+				users.username as author,
+				users.id as authorid
 				
 			FROM articles
 			INNER JOIN users on articles.author=users.id')->fetchAll();
