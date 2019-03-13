@@ -5,8 +5,6 @@ namespace App\Controllers;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-
-
 class PagesController extends Controller {
 
 	public function home(Request $request, Response $response, array $args){
@@ -46,12 +44,19 @@ class PagesController extends Controller {
 		}
 
 		$categoriesAll = $this->container->db->query('
-			SELECT
-				*
+			SELECT*
 			FROM categories ')->fetchAll();
 		
 
+		$comments = $this->container->db->query('
+			SELECT *
+			FROM comments
+			inner join articles on article=articles.id
+			inner join users on commentator=users.id
+			')->fetchAll();
+
 		$args['articles'] = $articles;
+		$args['comments'] = $comments;
 		$args['categoriesAll']= $categoriesAll;
 		
 		$this->render($response,'pages/home.twig', $args);
