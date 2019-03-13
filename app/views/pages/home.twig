@@ -2,42 +2,36 @@
 
 {% block content %}
 
-<h1>Mes articles</h1>
-
 {% if (session.permission <= 2) and (session.permission > 0) %}
-
 	<form method="post" action="{{path_for('add')}}">
-		<div class="form-group">
-			<label for="formGroupExampleInput">title</label>
-			<input type="text" class="form-control" id="formGroupExampleInput" placeholder="title" name="title">
-		</div>
-		<div class="form-group">
-			<label for="formGroupExampleInput2">Text</label>
-			<textarea name="text" class="form-control" placeholder="text" ></textarea>
-		</div>
-		<input type="submit" name="add article">
+			<div class="form-group">
+					<label for="formGroupExampleInput">Title</label>
+					<input type="text" class="form-control" id="formGroupExampleInput" placeholder="title" name="title">
+			</div>
+			<div class="form-group">
+					<label for="formGroupExampleInput2">Text</label>
+					<textarea name="text" class="form-control" placeholder="text" ></textarea>
+			</div>
+			<input type="submit" name="add article">
 	</form>
-	{% endif %}
-	<div class="container">
-	{% for article in articles  %}
+{% endif %}
 
-       <div class="col-md-10 blogShort">
-           <h1 id="titleArt">{{article.title}}</h1>
-           <article>
-						 	 <p>{{article.text}}</p>
-							 <p>
-							 {{article.date|date()}}
-							 </p>
-							 <p> auteur(s) : {{article.author}}</p>
-					</article>
-
-       </div>
-
-
-	{% if session.permission == 1 %}
-
-		<p><a href="{{path_for('edit', {'id':article.id})}}">Edit</a></p>
-	{% endif %}
+<div class="container">
+{% for article in articles  %}
+<!-- Page Content -->
+	<div class="container" id="divArticle">
+	    <div class="col-md-10">
+	        <h1>{{article.title}}</h1>
+	        <p>{{article.text}}</p>
+					<p><i><small>author(s) : {{article.author}}</small></i></p>
+					<p><i><small>{{article.date|date()}}</small></i></p>
+	        <a class="btn btn-primary" href="#">Add a comment</a>
+					<a class="btn btn-primary" href="#">Edit</a>
+	    </div>
+	</div>
+{% if session.permission == 1 %}
+	<p><a href="{{path_for('edit', {'id':article.id})}}">Edit</a></p>
+{% endif %}
 {% endfor %}
 </div>
 {% endblock %}
