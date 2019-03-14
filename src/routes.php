@@ -4,6 +4,7 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 
 // ROUTES
+//articles
 
 $app->get("/", \App\Controllers\PagesController::class . ":home")->setName('home');
 
@@ -31,7 +32,12 @@ $app->get('/register', \App\Controllers\RegisterController::class . ":register" 
 	$app->get('/editprofile', \App\Controllers\ProfileController::class . ":editProfile" )->setName('editprofile');
 	$app->post('/submitchanges', \App\Controllers\ProfileController::class . ":submitchanges" )->setName('submitchanges');
 
-	
+	// comments
+	$app->post('/addCom', \App\Controllers\CommentsController::class . ":addCom" )->setName('addCom');
+	$app->get('/editCom/{id}', \App\Controllers\CommentsController::class . ":editCom" )->setName('editCom');
+	$app->put('/upCom/{id}', \App\Controllers\CommentsController::class . ":upCom")->setName('upCom');
+	$app->delete('/delCom/{id}', \App\Controllers\CommentsController::class . ":delCom")->setName('delCom');
+
 //---------------------------------------------------------------------------------------------------
 // ROUTES ADMIN
 $app->get("/admin", \App\Controllers\AdminController::class . ":admin")->setName('adminHome');
