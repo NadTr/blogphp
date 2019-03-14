@@ -24,7 +24,7 @@ class PagesController extends Controller {
 		$categories = $this->container->db->query('
 			SELECT article as article_id, name
 			FROM categoriesarticles
-			iNNER JOIN categories on categorie = categories.id')->fetchAll();
+			INNER JOIN categories on categorie = categories.id')->fetchAll();
 
 		
 

@@ -26,18 +26,19 @@ class ArticlesController extends Controller {
 	 	$prep->execute();
 		$result = $prep->fetch(\PDO::FETCH_ASSOC);
 
-		$categorie = 3; //$Atext = $request->getParsedBody()['Du blabla'];
+		$categories = $request->getParsedBody()['categories'];
 		$idarticle = $result['id'];
+			foreach ($categories as $key => $value) {
+			
+				$prep = $this->container->db->prepare('
+					INSERT INTO categoriesarticles(categorie, article)
+					VALUES(:categorie, :article )');
 
-		$prep = $this->container->db->prepare('
-			INSERT INTO categoriesarticles(categorie, article)
-			VALUES(:categorie, :article )');
+				$prep->bindValue('categorie', $value,  \PDO::PARAM_STR);
+				$prep->bindValue('article', $idarticle,  \PDO::PARAM_STR);
 
-		$prep->bindValue('categorie', $categorie,  \PDO::PARAM_STR);
-		$prep->bindValue('article', $idarticle,  \PDO::PARAM_STR);
-
-		$prep->execute();
-
+				$prep->execute();
+		}
 
 		$args['articles'] = $prep;
 		$args['categories'] = $prep;

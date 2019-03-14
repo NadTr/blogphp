@@ -10,9 +10,9 @@
 		<form method="post" action="{{path_for('add')}}">
 			<input type="text" placeholder="title" name="title">
 			<textarea name="text"></textarea>
-			{% for categories in categoriesAll %} 				
-  			<input type="checkbox" name="{{categories.id}}" value="categories"> 
-				{{ categories.name }} 
+			{% for categorie in categoriesAll %} 				
+  				<input type="checkbox" name="categories[]" value={{categorie.id}}>
+				{{ categorie.name }} 
 			{% endfor %}
 			<input type="submit" name="add article">
 		</form>
@@ -37,14 +37,13 @@
 			<p><a href="{{path_for('edit', {'id':article.id})}}">Edit</a></p>
 		{% endif %}
 
-		
 	<p>les commentaires :
 		{% for comment in comments %}
 			{% if comment.article == article.id %} 
 				<p>titre : {{ comment.title}}</p>
 				<p>texte:  {{ comment.text}}</p>
 				<p>author:  {{ comment.firstname}}</p>
-				
+
 			{% endif %}
 		{% endfor %}
 	</p>
