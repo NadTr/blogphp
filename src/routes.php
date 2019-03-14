@@ -30,9 +30,9 @@ $app->get('/register', \App\Controllers\RegisterController::class . ":register" 
 	$app->post('/submitchanges', \App\Controllers\ProfileController::class . ":submitchanges" )->setName('submitchanges');
 	// comments
 	$app->post('/addCom', \App\Controllers\CommentsController::class . ":addCom" )->setName('addCom');
-	$app->get('/editCom', \App\Controllers\CommentsController::class . ":editCom" )->setName('editCom');
+	$app->get('/editCom/{id}', \App\Controllers\CommentsController::class . ":editCom" )->setName('editCom');
 	$app->put('/upCom/{id}', \App\Controllers\CommentsController::class . ":upCom")->setName('upCom');
-	// $app->get('/comments', \App\Controllers\ProfileController::class . ":showCom" )->setName('showCom');
+	$app->delete('/delCom/{id}', \App\Controllers\CommentsController::class . ":delCom")->setName('delCom');
 //---------------------------------------------------------------------------------------------------
 // ROUTES ADMIN
 $app->get('/admin', \App\Controllers\AdminArticlesController::class . ":admin")->setName('admin');

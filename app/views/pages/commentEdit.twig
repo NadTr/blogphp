@@ -3,7 +3,7 @@
 
 {% block content %}
 <h1 class="text-center mt-4">Change your comment's informations</h1>
-<form method="post" action="{{path_for('update', {'id':id})}}">
+<form method="post" action="{{path_for('upCom', {'id':id})}}">
 	<div class="form-group">
 		<label for="formGroupExampleInput">title</label>
 		<input type="text" class="form-control" id="formGroupExampleInput" name="title" value="{{title}}">

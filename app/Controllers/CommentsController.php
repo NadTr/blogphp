@@ -64,35 +64,14 @@ class CommentsController extends Controller {
 
 		$this->render($response,'pages/commentEdit.twig', $res);
 	}
-	public function showCom(Request $request, Response $response){
-
-		$comment = $this->container->db->query('
-			SELECT 
-			comments.id, 
-			title, 
-			text, 
-			date, 
-			username as commentator,
-			articles.title as article 
-			FROM comments 
-			INNER JOIN users on comments.commentator=users.id
-			INNER JOIN articles on comments.article=articles.id')->fetchAll();
-		/*foreach ($articles as &$article) {
-			# crée une boite vide pour y mettre les commentaires de mes articles 
-			$article['comments'] = array();
-		}
-		#pour chaque commentaire, on verifie si l'id de l'article est le meme et on le joint
-		#& pour ne pas travailler sur une copie de l'article
-		foreach ($comments as $comment) {
-			foreach ($articles as &$article) {
-				if($article['id'] === $comment['article_id']){
-					array_push($article['comments'], $comment['title']);
-				}
-			}
-		}*/
-		$args['comments'] = $comment;
-
-		$this->render($response,'pages/comments.twig', $args);
+	public function delCom(Request $request, Response $response, $args){
+		$id = $args['id']; //checks _GET [IS PSR-7 compliant]
+		$prep = $this->container->db->prepare('
+			DELETE FROM comments where id=:id');
+		$prep->bindParam("id", $id);
+		$prep->execute();
+		$args['comments']= $prep;
+		return $response->withRedirect($this->container->router->pathFor('home'),301);
 	}
 	
 

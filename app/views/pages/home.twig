@@ -25,39 +25,50 @@
 	<p>{{article.text}} </p>
 	<p>	{{article.date|date()}}<p>
 	<p> auteur(s) : {{article.author}}</p>
+	<p>categorie(s):
+		
+		{% for categorie in article.categories %} 
+			{{ categorie }} 
+		{% endfor %}
+	</p>
+		
+		{% if (session.permission <= 2) and (session.permission > 0) and (article.authorid == session.id) %}
 
-	{% if session.permission == 1 %}
-
-	<p><a href="{{path_for('edit', {'id':article.id})}}">Edit</a></p>
-	{% endif %}
+			<p><a href="{{path_for('edit', {'id':article.id})}}">Edit</a></p>
+		{% endif %}
 	<h3>Comments</h3>
-	{% for comment in article.comments %} 
-			
-
-	<h2>helllooooool{{comment.title}}</h2>
-	<p>{{comment.text}} </p>
-	<p>	{{comment.date|date()}}<p>
-	<p> auteur(s) : {{comment.commentator}}</p>
-
-	{% if session.permission == 1 %}
-
-	<p><a href="{{path_for('editCom', {'id':comment.id})}}">Edit</a></p>
-	{% endif %}
+	{% for comment in comments %}
+		{% if comment.article == article.id %} 
+			<p>titre : {{ comment.comtitle}}</p>
+			<p>texte:  {{ comment.comtext}}</p>
+			<p>author:  {{ comment.username}}</p>
+			<p>date : {{ comment.comdate|date()}}</p>
+			{% if (session.permission <= 3) and (session.permission > 0) and (comment.commentator == session.id) %}
+				<p><a href="{{path_for('editCom', {'id':comment.comid})}}">Edit</a></p>
+			{% endif %}
+			{% if (session.permission <= 3) and (session.permission > 0) and (comment.commentator == session.id) %}
+				<form method="post" action="{{path_for('delCom', {'id':comment.comid})}}">
+					<input type="hidden" name="_METHOD" value="delete"/>
+					<input type="submit" value="Delete"/>
+				</form>
+			{% endif %}
+		{% endif %}
 	{% endfor %}
+	
 	{% if (session.permission <= 3) and (session.permission > 0) %}
 
-	<form method="post" action="{{path_for('addCom')}}">
-		<div class="form-group">
-			<label for="formGroupExampleInput">title</label>
-			<input type="text" class="form-control" id="formGroupExampleInput" placeholder="title comment" name="title">
-		</div>
-		<div class="form-group">
-			<label for="formGroupExampleInput2">Text</label>
-			<textarea name="text" class="form-control" placeholder="text comment" ></textarea>
-		</div>
-		<input type="hidden" name="art" id="art" value="{{article.id}}">
-		<input type="submit" name="add comment">
-	</form>
+		<form method="post" action="{{path_for('addCom')}}">
+			<div class="form-group">
+				<label for="formGroupExampleInput">title</label>
+				<input type="text" class="form-control" id="formGroupExampleInput" placeholder="title comment" name="title">
+			</div>
+			<div class="form-group">
+				<label for="formGroupExampleInput2">Text</label>
+				<textarea name="text" class="form-control" placeholder="text comment" ></textarea>
+			</div>
+			<input type="hidden" name="art" id="art" value="{{article.id}}">
+			<input type="submit" name="add comment">
+		</form>
 	{% endif %}
 	{% endfor %}
 {% endblock %}
