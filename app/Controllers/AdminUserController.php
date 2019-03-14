@@ -27,7 +27,7 @@ class AdminUserController extends Controller {
 		$this->render($response,'admin/UsersAdmin.twig', $args);
 	}
 
-	public function usersedit(Request $request, Response $response,$args){
+	public function usersedit(Request $request, Response $response,array $args){
 
 		$id = $args['id'];
 		$prep = $this->container->db->prepare('
@@ -35,9 +35,10 @@ class AdminUserController extends Controller {
 		$prep->bindParam("id", $id);
 	
 		$prep->execute();
-		$res=$prep->fetch();
+		$users=$prep->fetch();
+		$args['users']=$users;
 
-		$this->render($response,'admin/UserEditAdmin.twig', $res);
+		$this->render($response,'admin/UserEditAdmin.twig', $args);
 	}
 
 		public function usersupd(Request $request, Response $response, $args){

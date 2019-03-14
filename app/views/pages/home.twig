@@ -15,22 +15,22 @@
 	{% endif %}
 
 	<!--div content of articles-->
-<div class="wrap">
+	<div class="wrap">
 		 <div class="col-md-10" id="divArticle">
-		 {% for article in articles %}
-					<h1 id="titleArt">{{article.title}}</h1>
-				  <p>{{article.text}}</p>
+		 		{% for article in articles %}
+				<h1 id="titleArt">{{article.title}}</h1>
+				<p>{{article.text}}</p>
 				<div id="infoArt">
-					<p><i><small>{{article.date|date()}}&nbsp&nbsp&nbsp</small></i><p>
-					<p><i><small>{{article.author}}&nbsp&nbsp&nbsp</small></i></p>
-					<p>categorie(s):
-						{% for categorie in article.categories %}
-							{{ categorie }}
-						{% endfor %}
-					</p>
-		 </div>
+							<p><i><small>{{article.date|date()}}&nbsp&nbsp&nbsp</small></i><p>
+							<p><i><small>{{article.author}}&nbsp&nbsp&nbsp</small></i></p>
+							<p>categorie(s):
+								{% for categorie in article.categories %}
+									{{ categorie }}
+								{% endfor %}
+							</p>
+	 			</div>
 
-		{% if session.permission == 1 and (article.authorid == session.id) %}
+		{% if (session.permission <= 2) and (session.permission > 0) and (article.authorid == session.id) %}
 			<p><a href="{{path_for('edit', {'id':article.id})}}">Edit</a></p>
 		{% endif %}
 
@@ -38,15 +38,42 @@
 	<h4 id="titleComment">Comments:</h4>
 	<div id="comment">
 			<!-- <h4>Comments:</h4> -->
-				{% for comment in comments %}
-					{% if comment.article == article.id %}
-						<p>{{ comment.title}}</p>
-						<p>{{ comment.text}}</p>
-						<p id="infoComment">author: {{ comment.firstname}}</p>
+			{% for comment in comments %}
+				{% if comment.article == article.id %}
+				<p>titre : {{ comment.comtitle}}</p>
+				<p>texte:  {{ comment.comtext}}</p>
+				<p id="infoComment">author: {{ comment.username}}</p>
+				<p>date : {{ comment.comdate|date()}}</p>
+					{% if (session.permission <= 3) and (session.permission > 0) and (comment.commentator == session.id) %}
+					<p><a href="{{path_for('editCom', {'id':comment.comid})}}">Edit</a></p>
 					{% endif %}
-				{% endfor %}
+					{% if (session.permission <= 3) and (session.permission > 0) and (comment.commentator == session.id) %}
+					<form method="post" action="{{path_for('delCom', {'id':comment.comid})}}">
+							<input type="hidden" name="_METHOD" value="delete"/>
+							<input type="submit" value="Delete"/>
+					</form>
+					{% endif %}
+				{% endif %}
+			{% endfor %}
+
+		{% if (session.permission <= 3) and (session.permission > 0) %}
+		<form method="post" action="{{path_for('addCom')}}">
+				<div class="form-group">
+					<label for="formGroupExampleInput">title</label>
+					<input type="text" class="form-control" id="formGroupExampleInput" placeholder="title comment" name="title">
+				</div>
+				<div class="form-group">
+					<label for="formGroupExampleInput2">Text</label>
+					<textarea name="text" class="form-control" placeholder="text comment" ></textarea>
+				</div>
+				<input type="hidden" name="art" id="art" value="{{article.id}}">
+				<input type="submit" name="add comment">
+		</form>
+		{% endif %}
 	</div>
-	{% endfor %}
+
+		{% endfor %}
+	</div>
 </div>
-</div>
+
 {% endblock %}
