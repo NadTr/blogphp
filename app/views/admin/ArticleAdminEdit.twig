@@ -5,7 +5,7 @@
 
 <p>Formulaire de edit</p>
 
-<form method="post" action="{{path_for('update', {'id':id})}}">
+<form method="post" action="{{path_for('articleAdminUpdate', {'id':id})}}">
 	<div class="form-group">
 		<label for="formGroupExampleInput">title</label>
 		<input type="text" class="form-control" id="formGroupExampleInput" name="title" value="{{title}}">
@@ -18,7 +18,6 @@
 	<input type="hidden" name="_METHOD" value="put"/> 
 	<input type="submit" name="add article">
 </form>
-
 
 
 

@@ -7,7 +7,7 @@ use Slim\Http\Response;
 
 class AdminArticlesController extends Controller {
 
-	public function admin(Request $request, Response $response){
+	public function articles(Request $request, Response $response, array $args){
 
 		$articles = $this->container->db->query('
 			SELECT
@@ -20,39 +20,33 @@ class AdminArticlesController extends Controller {
 			FROM articles
 			INNER JOIN users on articles.author=users.id')->fetchAll();
 
-		$comments = $this->container->db->query('
-			SELECT
-				comments.title as title,
-				comments.date as date
-				
-			FROM comments ')->fetchAll();
-
 		$categories = $this->container->db->query('
-			SELECT
-				categories.name as categoriename 
-				
-			FROM categories ')->fetchAll();
+			SELECT article as article_id, name
+			FROM categoriesarticles
+			iNNER JOIN categories on categorie = categories.id')->fetchAll();
 
-		$users = $this->container->db->query('
-			SELECT
-								
-				users.firstname as firstname, 
-				users.lastname as lastname, 
-				users.username as username, 
-				users.permission as permission, 
-				users.email as email
-				
-			FROM users ')->fetchAll();
-		
+		foreach ($articles as &$article) {
+			# crée une boite vide pour y mettre les categories de mes articles 
+			$article['categories'] = array();
+		}
+
+		#pour chaque catégorie, on verifie sir l'id de l'article est le meme et on le joint
+		#& pour ne pas travailler sur une copie de l'article
+		foreach ($categories as $categorie) {
+			foreach ($articles as &$article) {
+				if($article['id'] === $categorie['article_id']){
+					array_push($article['categories'], $categorie['name']);
+				}
+			}
+		}
 		$args['articles'] = $articles;
-		$args['comments'] = $comments;
-		$args['categories']= $categories;
-		$args['users'] = $users;
-
+		
 		$this->render($response,'admin/ArticlesAdmin.twig', $args);
 	}
 
-	public function articlesdel(Request $request, Response $response, $args){
+
+
+	public function articlesdel(Request $request, Response $response, array $args){
 
 		$id = $args['id']; //checks _GET [IS PSR-7 compliant]
 
@@ -64,11 +58,26 @@ class AdminArticlesController extends Controller {
 
 		$args['articles'] = $prep;
 
-		return $response->withRedirect('/admin',301);
+		return $response->withRedirect($this->container->router->pathFor('articlesAdmin'),301);
 
 	}
 
-	public function upd(Request $request, Response $response, $args){
+	
+	public function articlesedit(Request $request, Response $response,array $args){
+
+		$id = $args['id'];
+		$prep = $this->container->db->prepare('
+			SELECT * FROM articles WHERE id =:id');
+		$prep->bindParam("id", $id);
+	
+		$prep->execute();
+		$res=$prep->fetch();
+
+		$this->render($response,'admin/ArticleAdminEdit.twig', $res);
+	}
+
+
+	public function articlesupd(Request $request, Response $response, array $args){
 
 		$id = $args['id']; //checks _GET [IS PSR-7 compliant]
 		$title = $request->getParsedBody()['title']; //checks _POST [IS PSR-7 compliant]
@@ -86,24 +95,9 @@ class AdminArticlesController extends Controller {
 
 		$args['articles'] = $prep;
 
-		return $response->withRedirect('admin');
+		return $response->withRedirect($this->container->router->pathFor('articlesAdmin'),301);
 
 	}
-	public function edit(Request $request, Response $response,$args){
-
-		$id = $args['id'];
-		$prep = $this->container->db->prepare('
-			SELECT * FROM articles WHERE id =:id');
-		$prep->bindParam("id", $id);
-	
-		$prep->execute();
-		$res=$prep->fetch();
-
-		$this->render($response,'admin/ArticleEdit.twig', $res);
-	}
-
-
-
 
 	
 
@@ -113,4 +107,5 @@ class AdminArticlesController extends Controller {
 
 
 
+ 
  

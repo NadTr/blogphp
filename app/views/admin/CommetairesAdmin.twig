@@ -1,0 +1,20 @@
+{% extends "layoutAdmin.twig" %}
+
+{% block content %}   
+
+	<h1>commentaires</h1>
+
+	{% for comments in comment %} 
+		
+		<p>commentaire: {{comments.id}}</p>
+		<p>titre: {{comments.title}}</p>
+		<p>texte: {{comments.text}}</p>
+		<p>date: {{comments.date}}</p>
+
+	<form method="post" action="{{path_for('commentairesAdminDel', {'id':comments.id})}}">
+		<input type="hidden" name="_METHOD" value="delete"/>
+		<input type="submit" value="Delete"/>
+	</form>
+	{% endfor %}
+
+{% endblock %}

@@ -25,22 +25,24 @@ class LoginController extends Controller {
 			$res=$stmt->fetch();
 
 			if(password_verify($password,$res['pass'])){
-				
+
 				$_SESSION['username'] = $username;
 				$_SESSION['permission']=$res['permission'];
 				$_SESSION['id']=$res['id'];
+			//	$args['alert']='You are connected'
 				return $response->withRedirect('/', 301);
 			}
-			
+
 			else{
 
-				return $response->withRedirect('/login', 301);
+				$res['alert'] = ['password or username is wrong'];
+				return $this->render($response, 'pages/login.twig', $res);
 			}
 		}
-		
-		else{
 
-			return $response->withRedirect('/register', 301);
+		else{
+			$res['alert'] = ['empty fields'];
+			return $this->render($response, 'pages/login.twig', $res);
 		}
 	}
 

@@ -1,0 +1,21 @@
+{% extends "layoutAdmin.twig" %}
+
+{% block content %}
+	<h1>Bienvenue sur le Dashboard</h1>
+	<article>
+		<h2>les articles</h2>
+		<p> <a href="{{path_for('articlesAdmin')}}">les articles:</a></p>
+	</article>
+	<article>
+		<h2>les users</h2>
+		<p><a href="{{path_for('usersAdmin')}}">les users:</a></p>
+	</article>
+	<article>
+		<h2>les catégories</h2>
+		<p><a href="{{path_for('categoriesAdmin')}}">les catégories:</a></p>
+	</article>
+	<article>
+		<h2>les commentaires</h2>
+		<p><a href="{{path_for('commentairesAdmin')}}">les commentaires:</a></p>
+	</article>
+{% endblock %}
