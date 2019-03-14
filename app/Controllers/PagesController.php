@@ -19,7 +19,11 @@ class PagesController extends Controller {
 				users.id as authorid
 				
 			FROM articles
-			INNER JOIN users on articles.author=users.id')->fetchAll();
+			INNER JOIN users on articles.author=users.id
+			ORDER BY date DESC
+			LIMIT 5
+			')->fetchAll();
+		
 		$categories = $this->container->db->query('
 			SELECT article as article_id, name
 			FROM categoriesarticles
