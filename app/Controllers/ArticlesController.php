@@ -50,7 +50,7 @@ class ArticlesController extends Controller {
 			');
 		$prep->bindParam("id", $id);
 		$prep->execute();
-		$catarticles= $prep->fetch();
+		$catarticles= $prep->fetchAll();
 		$prep = $this->container->db->prepare('
 			
 			SELECT * from categories');
