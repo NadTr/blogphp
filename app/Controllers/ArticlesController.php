@@ -105,10 +105,31 @@ class ArticlesController extends Controller {
 		$prep->execute();
 
 
+		$prep = $this->container->db->prepare('
+			
+			DELETE  FROM categoriesarticles 
+			where article=:articleid ');	
+		
+		$prep->bindParam("articleid", $id);
+		$prep->execute();
 
+		
+
+		$categories = $request->getParsedBody()['categories'];
+			foreach ($categories as $key => $value) {
+			
+				$prep = $this->container->db->prepare('
+					INSERT INTO categoriesarticles(categorie, article)
+					VALUES(:categorie, :article )');
+
+				$prep->bindValue('categorie', $value,  \PDO::PARAM_STR);
+				$prep->bindValue('article', $id,  \PDO::PARAM_STR);
+
+				$prep->execute();
+		}
 
 		$args['articles'] = $prep;
-
+		$args['categories'] = $prep;
 		return $response->withRedirect($this->container->router->pathFor('home'),301);
 
 	}
