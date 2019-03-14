@@ -23,10 +23,10 @@ return [
 
         // Database connection settings
         'db' => [
-            'host' => 'jepsen.local',
-            'dbname' =>'odaeyes',
-            'user' => 'odaeyes',
-            'pass' => 'odaeyes',
+            'host' => 'localhost',
+            'dbname' =>'blogDb',
+            'user' => 'becode',
+            'pass' => 'becode',
         ],
     ]
 ];

@@ -34,6 +34,7 @@
 
 			<p><a href="{{path_for('edit', {'id':article.id})}}">Edit</a></p>
 		{% endif %}
+
 	<h3>Comments</h3>
 	{% for comment in comments %}
 		{% if comment.article == article.id %} 
@@ -43,6 +44,7 @@
 			<p>date : {{ comment.comdate|date()}}</p>
 			{% if (session.permission <= 3) and (session.permission > 0) and (comment.commentator == session.id) %}
 				<p><a href="{{path_for('editCom', {'id':comment.comid})}}">Edit</a></p>
+
 			{% endif %}
 			{% if (session.permission <= 3) and (session.permission > 0) and (comment.commentator == session.id) %}
 				<form method="post" action="{{path_for('delCom', {'id':comment.comid})}}">

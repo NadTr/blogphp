@@ -44,13 +44,13 @@ class PagesController extends Controller {
 		
 		$comments = $this->container->db->query('
 			SELECT
-			comments.id as comid, 
-			comments.title as comtitle, 
-			comments.text as comtext, 
-			comments.date as comdate, 
-			users.id as commentator,
-			users.username as username,
-			article 
+				comments.id as comid, 
+				comments.title as comtitle, 
+				comments.text as comtext, 
+				comments.date as comdate, 
+				users.id as commentator,
+				users.username as username,
+				article 
 			FROM comments
 			inner join articles on article=articles.id
 			inner join users on commentator=users.id

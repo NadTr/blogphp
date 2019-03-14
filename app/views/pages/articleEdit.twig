@@ -12,8 +12,14 @@
 
 	{% for categorie in categories %}
 
-	<input type="checkbox" name="categories[]" value={{categorie.id}} {% if categorie.id == catarticles.categorie %} checked {% endif %} >{{categorie.name }}
-		
+	<input type="checkbox" name="categories[]" value={{categorie.id}} 
+	
+		{% for catarticle in catarticles %}
+			{% if categorie.id == catarticle.categorie %} 
+				checked 
+			{% endif %} 
+		{% endfor %}
+		>{{categorie.name }}
 	{% endfor %} 
 	
 	<input type="hidden" name="_METHOD" value="put"/> 

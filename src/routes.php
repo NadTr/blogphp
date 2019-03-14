@@ -13,6 +13,7 @@ $app->get("/", \App\Controllers\PagesController::class . ":home")->setName('home
 
 	//display edit
 	$app->get("/article/edit/{id}", \App\Controllers\ArticlesController::class . ":edit")->setName('edit');
+	
 	// update
 	$app->put('/article/{id}', \App\Controllers\ArticlesController::class . ":upd")->setName('update');
 	
