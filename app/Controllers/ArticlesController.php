@@ -47,7 +47,48 @@ class ArticlesController extends Controller {
 
 	}
 
-	public function upd(Request $request, Response $response, $args){
+	
+	public function edit(Request $request, Response $response,array $args){
+
+		$id = $args['id']; //checks _GET [IS PSR-7 compliant]
+		$prep = $this->container->db->prepare('
+			SELECT * FROM articles WHERE id =:id');
+		
+		$prep->bindParam("id", $id);
+		$prep->execute();
+		$article=$prep->fetch();
+		
+
+		$prep = $this->container->db->prepare('
+			
+			SELECT categorie 
+			FROM categoriesarticles
+			Where article=:id
+			');
+		$prep->bindParam("id", $id);
+		$prep->execute();
+		$catarticles= $prep->fetch();
+
+
+		$prep = $this->container->db->prepare('
+			
+			SELECT * from categories');
+		
+
+		$prep->execute();
+		$categories = $prep->fetchAll();
+		
+
+		$args['categories']=$categories;
+		$args['article'] = $article;
+		$args['catarticles'] = $catarticles;
+		
+		$this->render($response,'pages/articleEdit.twig', $args);
+	}
+
+	
+
+	public function upd(Request $request, Response $response, array $args){
 
 		$id = $args['id']; //checks _GET [IS PSR-7 compliant]
 		$title = $request->getParsedBody()['title']; //checks _POST [IS PSR-7 compliant]
@@ -63,22 +104,13 @@ class ArticlesController extends Controller {
 		$prep->bindParam('date', $date,  \PDO::PARAM_STR);
 		$prep->execute();
 
+
+
+
 		$args['articles'] = $prep;
 
 		return $response->withRedirect($this->container->router->pathFor('home'),301);
 
-	}
-	public function edit(Request $request, Response $response,$args){
-
-		$id = $args['id'];
-		$prep = $this->container->db->prepare('
-			SELECT * FROM articles WHERE id =:id');
-		$prep->bindParam("id", $id);
-
-		$prep->execute();
-		$res=$prep->fetch();
-
-		$this->render($response,'pages/articleEdit.twig', $res);
 	}
 
 }
