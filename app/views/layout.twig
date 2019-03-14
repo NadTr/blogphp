@@ -1,84 +1,91 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>BeCode/JavaScript for the Web Exercise</title>
+      <title>BlogStore</title>
+      <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon"/>
 
-  <link rel="icon" href="./_shared/img/becode-seal.png" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link rel="stylesheet" href="/css/theme.css">
 
-  <link rel="stylesheet"
-  href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-  integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-  crossorigin="anonymous">
-
+      <link rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+      crossorigin="anonymous">
 </head>
+
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="./">Home</a>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown">
-         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           Auteurs
-         </a>
-         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-           <a class="dropdown-item" href="#">Auteur1</a>
-           <a class="dropdown-item" href="#">Auteur2</a>
-           <a class="dropdown-item" href="#">Auteur3</a>
-         </div>
-       </li>
-       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Catégories
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Catégorie1</a>
-          <a class="dropdown-item" href="#">Catégorie2</a>
-          <a class="dropdown-item" href="#">Catégorie3</a>
+      <!--START OF THE NAV-->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="./">BlogStore</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+          <ul class="navbar-nav mr-auto">
+                <!--Authors in the navbar-->
+                <li class="nav-item dropdown">
+                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   AUTHORS
+                 </a>
+                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                   <a class="dropdown-item" href="#">Author1</a>
+                   <a class="dropdown-item" href="#">Author2</a>
+                   <a class="dropdown-item" href="#">Author3</a>
+                 </div>
+               </li>
+               <!--Categories in the navbar-->
+               <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  CATEGORIES
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Categorie1</a>
+                  <a class="dropdown-item" href="#">Categorie2</a>
+                  <a class="dropdown-item" href="#">Categorie3</a>
+                </div>
+               </li>
+          </ul>
         </div>
-       </li>
-      </ul>
+
+      <!--username / logOut-->
+      {% if session.permission >=1 %}
+      <a href="{{path_for('profile')}}" class="text-info font-weight-bold  mr-4">{{session.username}}</a>
+      <a href="{{path_for('logout')}}" class="btn btn-outline-primary">LogOut</a>
+
+      <!--logIn / Register-->
+      {% else %}
+      <a href="{{path_for('login')}}" class="btn btn-outline-primary">Login</a>
+      <a href="{{path_for('register')}}" class="btn btn-outline-secondary ml-1" >Register</a>
+
+      {% endif %}
+    </nav>
+    <!--END OF THE NAV-->
+
+    <!--HEADER IMG-->
+    <img src="/img/img.jpg" class="w-100" id="entete"/>
+
+    <div class="container">
+      <div class="content">
+        {% for item in alert %}
+        <div class="alert alert-primary" role="alert">
+          {{item}}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      {% endfor %}
+       {% block content %}   {% endblock %}
+     </div>
     </div>
 
-
-  {% if session.permission >=1 %}
-  <a href="{{path_for('profile')}}" class="text-info font-weight-bold  mr-4">{{session.username}}</a>
-  <a href="{{path_for('logout')}}" class="btn btn-outline-primary">LogOut</a>
-
-  {% else %}
-  <a href="{{path_for('login')}}" class="btn btn-outline-primary">Login</a>
-  <a href="{{path_for('register')}}" class="btn btn-outline-secondary ml-1" >Register</a>
-
-  {% endif %}
-
-  <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
-  aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
-</button>
-</nav>
-
-<div class="container">
-  <div class="content">
-    {% for item in alert %}
-    <div class="alert alert-primary" role="alert">
-      {{item}}
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-  {% endfor %}
-   {% block content %}   {% endblock %}
- </div>
-</div>
-<footer class="page-footer  bg-dark ">
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">
-    &copy; Copyright 2011 by <a href="#">AwesomeIdea</a>.
-  </div>
-</footer>
+    <!--FOOTER-->
+    <footer class="page-footer  bg-dark ">
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3">
+        &copy; Copyright 2019 by BlogStore<a href="#"></a>
+      </div>
+    </footer>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

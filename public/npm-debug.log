@@ -1,0 +1,64 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install', 'gulp@next' ]
+2 info using npm@3.5.2
+3 info using node@v8.10.0
+4 verbose config Skipping project config: /home/becode/.npmrc. (matches userconfig)
+5 silly loadCurrentTree Starting
+6 silly install loadCurrentTree
+7 silly install readLocalPackageData
+8 silly fetchPackageMetaData gulp@next
+9 silly fetchNamedPackageData gulp
+10 silly mapToRegistry name gulp
+11 silly mapToRegistry using default registry
+12 silly mapToRegistry registry https://registry.npmjs.org/
+13 silly mapToRegistry uri https://registry.npmjs.org/gulp
+14 verbose get https://registry.npmjs.org/gulp not expired, no request
+15 silly fetchPackageMetaData Error: No compatible version found: gulp@next
+15 silly fetchPackageMetaData Valid install targets:
+15 silly fetchPackageMetaData 4.0.0, 3.9.1, 3.9.0, 3.8.11, 3.8.10, 3.8.9, 3.8.8, 3.8.7, 3.8.6, 3.8.5, 3.8.4, 3.8.3, 3.8.2, 3.8.1, 3.8.0, 3.7.0, 3.6.2, 3.6.1, 3.6.0, 3.5.6, 3.5.5, 3.5.2, 3.5.1, 3.5.0, 3.4.0, 3.3.4, 3.3.2, 3.3.1, 3.3.0, 3.2.5, 3.2.4, 3.2.3, 3.2.2, 3.2.1, 3.2.0, 3.1.4, 3.1.3, 3.1.2, 3.1.1, 3.0.0, 2.7.0, 2.6.1, 2.6.0, 2.4.1, 2.4.0, 2.3.0, 2.2.0, 2.1.0, 2.0.1, 2.0.0, 1.2.1, 1.2.0, 1.1.0, 1.0.0, 0.2.0, 0.1.0, 0.0.9, 0.0.8, 0.0.7, 0.0.5, 0.0.4, 0.0.3, 0.0.2, 0.0.1
+15 silly fetchPackageMetaData
+15 silly fetchPackageMetaData     at pickVersionFromRegistryDocument (/usr/share/npm/lib/fetch-package-metadata.js:156:16)
+15 silly fetchPackageMetaData     at /usr/share/npm/node_modules/iferr/index.js:13:50
+15 silly fetchPackageMetaData     at /usr/share/npm/lib/utils/pulse-till-done.js:19:8
+15 silly fetchPackageMetaData     at CachingRegistryClient.get_ (/usr/share/npm/lib/cache/caching-client.js:120:16)
+15 silly fetchPackageMetaData     at /usr/share/npm/lib/cache/caching-client.js:87:14
+15 silly fetchPackageMetaData     at /usr/share/npm/node_modules/graceful-fs/graceful-fs.js:76:16
+15 silly fetchPackageMetaData     at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:511:3)
+15 silly fetchPackageMetaData  error for gulp@next Error: No compatible version found: gulp@next
+15 silly fetchPackageMetaData Valid install targets:
+15 silly fetchPackageMetaData 4.0.0, 3.9.1, 3.9.0, 3.8.11, 3.8.10, 3.8.9, 3.8.8, 3.8.7, 3.8.6, 3.8.5, 3.8.4, 3.8.3, 3.8.2, 3.8.1, 3.8.0, 3.7.0, 3.6.2, 3.6.1, 3.6.0, 3.5.6, 3.5.5, 3.5.2, 3.5.1, 3.5.0, 3.4.0, 3.3.4, 3.3.2, 3.3.1, 3.3.0, 3.2.5, 3.2.4, 3.2.3, 3.2.2, 3.2.1, 3.2.0, 3.1.4, 3.1.3, 3.1.2, 3.1.1, 3.0.0, 2.7.0, 2.6.1, 2.6.0, 2.4.1, 2.4.0, 2.3.0, 2.2.0, 2.1.0, 2.0.1, 2.0.0, 1.2.1, 1.2.0, 1.1.0, 1.0.0, 0.2.0, 0.1.0, 0.0.9, 0.0.8, 0.0.7, 0.0.5, 0.0.4, 0.0.3, 0.0.2, 0.0.1
+15 silly fetchPackageMetaData
+15 silly fetchPackageMetaData     at pickVersionFromRegistryDocument (/usr/share/npm/lib/fetch-package-metadata.js:156:16)
+15 silly fetchPackageMetaData     at /usr/share/npm/node_modules/iferr/index.js:13:50
+15 silly fetchPackageMetaData     at /usr/share/npm/lib/utils/pulse-till-done.js:19:8
+15 silly fetchPackageMetaData     at CachingRegistryClient.get_ (/usr/share/npm/lib/cache/caching-client.js:120:16)
+15 silly fetchPackageMetaData     at /usr/share/npm/lib/cache/caching-client.js:87:14
+15 silly fetchPackageMetaData     at /usr/share/npm/node_modules/graceful-fs/graceful-fs.js:76:16
+15 silly fetchPackageMetaData     at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:511:3)
+16 silly rollbackFailedOptional Starting
+17 silly rollbackFailedOptional Finishing
+18 silly runTopLevelLifecycles Starting
+19 silly runTopLevelLifecycles Finishing
+20 silly install printInstalled
+21 verbose stack Error: No compatible version found: gulp@next
+21 verbose stack Valid install targets:
+21 verbose stack 4.0.0, 3.9.1, 3.9.0, 3.8.11, 3.8.10, 3.8.9, 3.8.8, 3.8.7, 3.8.6, 3.8.5, 3.8.4, 3.8.3, 3.8.2, 3.8.1, 3.8.0, 3.7.0, 3.6.2, 3.6.1, 3.6.0, 3.5.6, 3.5.5, 3.5.2, 3.5.1, 3.5.0, 3.4.0, 3.3.4, 3.3.2, 3.3.1, 3.3.0, 3.2.5, 3.2.4, 3.2.3, 3.2.2, 3.2.1, 3.2.0, 3.1.4, 3.1.3, 3.1.2, 3.1.1, 3.0.0, 2.7.0, 2.6.1, 2.6.0, 2.4.1, 2.4.0, 2.3.0, 2.2.0, 2.1.0, 2.0.1, 2.0.0, 1.2.1, 1.2.0, 1.1.0, 1.0.0, 0.2.0, 0.1.0, 0.0.9, 0.0.8, 0.0.7, 0.0.5, 0.0.4, 0.0.3, 0.0.2, 0.0.1
+21 verbose stack
+21 verbose stack     at pickVersionFromRegistryDocument (/usr/share/npm/lib/fetch-package-metadata.js:156:16)
+21 verbose stack     at /usr/share/npm/node_modules/iferr/index.js:13:50
+21 verbose stack     at /usr/share/npm/lib/utils/pulse-till-done.js:19:8
+21 verbose stack     at CachingRegistryClient.get_ (/usr/share/npm/lib/cache/caching-client.js:120:16)
+21 verbose stack     at /usr/share/npm/lib/cache/caching-client.js:87:14
+21 verbose stack     at /usr/share/npm/node_modules/graceful-fs/graceful-fs.js:76:16
+21 verbose stack     at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:511:3)
+22 verbose cwd /home/becode/Bureau/blogphp/public
+23 error Linux 4.15.0-45-generic
+24 error argv "/usr/bin/node" "/usr/bin/npm" "install" "gulp@next"
+25 error node v8.10.0
+26 error npm  v3.5.2
+27 error No compatible version found: gulp@next
+27 error Valid install targets:
+27 error 4.0.0, 3.9.1, 3.9.0, 3.8.11, 3.8.10, 3.8.9, 3.8.8, 3.8.7, 3.8.6, 3.8.5, 3.8.4, 3.8.3, 3.8.2, 3.8.1, 3.8.0, 3.7.0, 3.6.2, 3.6.1, 3.6.0, 3.5.6, 3.5.5, 3.5.2, 3.5.1, 3.5.0, 3.4.0, 3.3.4, 3.3.2, 3.3.1, 3.3.0, 3.2.5, 3.2.4, 3.2.3, 3.2.2, 3.2.1, 3.2.0, 3.1.4, 3.1.3, 3.1.2, 3.1.1, 3.0.0, 2.7.0, 2.6.1, 2.6.0, 2.4.1, 2.4.0, 2.3.0, 2.2.0, 2.1.0, 2.0.1, 2.0.0, 1.2.1, 1.2.0, 1.1.0, 1.0.0, 0.2.0, 0.1.0, 0.0.9, 0.0.8, 0.0.7, 0.0.5, 0.0.4, 0.0.3, 0.0.2, 0.0.1
+28 error If you need help, you may report this error at:
+28 error     <https://github.com/npm/npm/issues>
+29 verbose exit [ 1, true ]

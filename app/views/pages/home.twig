@@ -1,53 +1,52 @@
-
 {% extends "layout.twig" %}
 
 {% block content %}
 
-	<h1>Mes articles</h1>
-
 	{% if (session.permission <= 2) and (session.permission > 0) %}
-
 		<form method="post" action="{{path_for('add')}}">
-			<input type="text" placeholder="title" name="title">
-			<textarea name="text"></textarea>
-			{% for categorie in categoriesAll %} 				
-  				<input type="checkbox" name="categories[]" value={{categorie.id}}>
-				{{ categorie.name }} 
-			{% endfor %}
-			<input type="submit" name="add article">
+				<input type="text" placeholder="title" name="title">
+				<textarea name="text"></textarea>
+				{% for categorie in categoriesAll %}
+	  				<input type="checkbox" name="categories[]" value={{categorie.id}}>
+					{{ categorie.name }}
+				{% endfor %}
+				<input type="submit" name="add article">
 		</form>
 	{% endif %}
 
-	<h1>Articles</h1>
+	<!--div content of articles-->
+<div class="wrap">
+		 <div class="col-md-10" id="divArticle">
+		 {% for article in articles %}
+					<h1 id="titleArt">{{article.title}}</h1>
+				  <p>{{article.text}}</p>
+				<div id="infoArt">
+					<p><i><small>{{article.date|date()}}&nbsp&nbsp&nbsp</small></i><p>
+					<p><i><small>{{article.author}}&nbsp&nbsp&nbsp</small></i></p>
+					<p>categorie(s):
+						{% for categorie in article.categories %}
+							{{ categorie }}
+						{% endfor %}
+					</p>
+		 </div>
 
-	{% for article in articles %}
-
-	<h3>titre: {{article.title}}</h3>
-	<p>	date: {{article.date|date()}}<p>
-	<p>auteur(s):{{article.author}}</p>
-	<p>categorie(s):
-		
-		{% for categorie in article.categories %} 
-			{{ categorie }} 
-		{% endfor %}
-	</p>
-		
 		{% if session.permission == 1 and (article.authorid == session.id) %}
-
 			<p><a href="{{path_for('edit', {'id':article.id})}}">Edit</a></p>
 		{% endif %}
 
-	<p>les commentaires :
-		{% for comment in comments %}
-			{% if comment.article == article.id %} 
-				<p>titre : {{ comment.title}}</p>
-				<p>texte:  {{ comment.text}}</p>
-				<p>author:  {{ comment.firstname}}</p>
-
-			{% endif %}
-		{% endfor %}
-	</p>
-	
+	<!--COMMENTS-->
+	<h4 id="titleComment">Comments:</h4>
+	<div id="comment">
+			<!-- <h4>Comments:</h4> -->
+				{% for comment in comments %}
+					{% if comment.article == article.id %}
+						<p>{{ comment.title}}</p>
+						<p>{{ comment.text}}</p>
+						<p id="infoComment">author: {{ comment.firstname}}</p>
+					{% endif %}
+				{% endfor %}
+	</div>
 	{% endfor %}
-
+</div>
+</div>
 {% endblock %}

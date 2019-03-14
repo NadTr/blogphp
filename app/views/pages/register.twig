@@ -1,11 +1,10 @@
 {% extends "layout.twig" %}
 
-
 {% block content %}
 
-<h1 class="text-center mt-4">Register on our blog</h1>
-<form action="{{path_for('subreg')}}" method="post">
 
+<form action="{{path_for('subreg')}}" method="post" id="formreg">
+  <h1 class="text-center mt-4">Register on our blog</h1>
   <div class="form-group">
     <label for="firstname">Firstname</label>
     <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter firstname" required>

@@ -1,9 +1,11 @@
 {% extends "layout.twig" %}
 {% block content %}
-	<h1>Mon profil</h1>
-	<h3>Username : {{username}}</h3>
-	<p>Lastname : {{lastname}} </p>
-	<p>Firstname : {{firstname}}<p>
-	<p>Email : {{email}}</p>
-	<a href="{{path_for('editprofile')}}" class="btn btn-success">Edit profile</a>
+<div id="profile">
+		<h2>Mon profil</h2>
+		<h3>{{username}}</h3>
+		<p>Lastname: {{lastname}} </p>
+		<p>Firstname: {{firstname}}<p>
+		<p>Email: {{email}}</p>
+		<a href="{{path_for('editprofile')}}" class="btn btn-primary btn-sm ml-auto">Edit profile</a>
+</div>
 {% endblock %}

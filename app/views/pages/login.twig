@@ -1,9 +1,8 @@
 {% extends "layout.twig" %}
 
-
 {% block content %}
- <h1 class="text-center mt-4 ">Login on our blog</h1>
-<form class="mb-3" action="{{path_for('sublogin')}}" method="post">
+<form class="mb-3" action="{{path_for('sublogin')}}" method="post" id="formlog">
+  <h1 class="text-center mt-4 ">Login on our blog</h1>
   <div class="form-group">
     <label for="username">Username</label>
     <input type="text" class="form-control" id="username" name="getusername" placeholder="Enter username" required>
