@@ -2,8 +2,8 @@
 
 
 {% block content %}
-<h1 class="text-center mt-4">Change your comment's informations</h1>
-<form method="post" action="{{path_for('upCom', {'id':id})}}">
+<form id="formCommentEdit" method="post" action="{{path_for('upCom', {'id':id})}}">
+	<h3 class="text-center mt-4">Change your comment's informations</h3>
 	<div class="form-group">
 		<label for="formGroupExampleInput">title</label>
 		<input type="text" class="form-control" id="formGroupExampleInput" name="title" value="{{title}}">
@@ -13,7 +13,7 @@
 		<textarea name="text" class="form-control">{{text}}</textarea>
 		<input type="text" name="date" value="{{date}}">
 	</div>
-	<input type="hidden" name="_METHOD" value="put"/> 
+	<input type="hidden" name="_METHOD" value="put"/>
 	<input type="submit" name="add comment">
 </form>
 {% endblock %}
