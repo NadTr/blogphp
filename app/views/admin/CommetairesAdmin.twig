@@ -9,7 +9,7 @@
 		<p>commentaire: {{comments.id}}</p>
 		<p>titre: {{comments.title}}</p>
 		<p>texte: {{comments.text}}</p>
-		<p>date: {{comments.date}}</p>
+		<p>date: {{comments.date|date()}}</p>
 
 	<form method="post" action="{{path_for('commentairesAdminDel', {'id':comments.id})}}">
 		<input type="hidden" name="_METHOD" value="delete"/>
