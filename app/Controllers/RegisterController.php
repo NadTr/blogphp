@@ -31,16 +31,18 @@ class RegisterController extends Controller {
 		  $stmt->bindValue('permission', $permission, PDO::PARAM_STR);
 		  $stmt->bindValue('email', $email, PDO::PARAM_STR);
 		  $stmt->bindValue('pass', $hashedpass, PDO::PARAM_STR);
-		  $stmt->execute();
-		  $args['result'] = $stmt;
-			$res['result'] = $args['result'];
-			$res['alert'] = ['You are well registered'];
+		  $res['result'] = $stmt->execute();
+			$args['result'] = $res['result'];
+			// $alert = array();
+			// $alert['class'] = 'success'
+			// $alert['message'] = 'You are well registered'
+			// $args['alert'] = $alert;
 
-		  return $response->withRedirect($this->container->router->pathFor('home'), 301);
+		  return $response->withRedirect($this->container->router->pathFor('login'), 301);
 		}
 		else {
-		  $res['alert'] = ['passwords does not match'];
-			return $this->render($response, 'pages/register.twig', $res);
+		  $args['alert'] = ['passwords don\'t match'];
+			return $this->render($response, 'pages/register.twig', $args);
 		}
 
 

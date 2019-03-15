@@ -17,7 +17,11 @@ $app->get("/", \App\Controllers\PagesController::class . ":home")->setName('home
 	// update
 	$app->put('/article/{id}', \App\Controllers\ArticlesController::class . ":upd")->setName('update');
 	
-	
+// catégories
+$app->get("/categories/{id}", \App\Controllers\PagesController::class . ":displaycat")->setName('displaycat');
+
+//authors
+$app->get("/author/{id}", \App\Controllers\PagesController::class . ":displayauthor")->setName('displayauthor');
 
 //register
 $app->get('/register', \App\Controllers\RegisterController::class . ":register" )->setName('register');
