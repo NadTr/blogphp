@@ -29,20 +29,20 @@ class LoginController extends Controller {
 				$_SESSION['username'] = $username;
 				$_SESSION['permission']=$res['permission'];
 				$_SESSION['id']=$res['id'];
-			//	$args['alert']='You are connected'
-				return $response->withRedirect('/', 301);
+				//$args['alert']='You are connected'
+				return $response->withRedirect($this->container->router->pathFor('home', [$args['alert'] => 'You\'re connected']), 301);
 			}
 
 			else{
 
-				$res['alert'] = ['password or username is wrong'];
-				return $this->render($response, 'pages/login.twig', $res);
+				$args['alert'] = ['password or username is wrong'];
+				return $this->render($response, 'pages/login.twig', $args);
 			}
 		}
 
 		else{
-			$res['alert'] = ['empty fields'];
-			return $this->render($response, 'pages/login.twig', $res);
+			$args['alert'] = ['empty fields'];
+			return $this->render($response, 'pages/login.twig', $args);
 		}
 	}
 
