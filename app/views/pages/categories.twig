@@ -3,13 +3,12 @@
 {% block content %}
 <h1>{{name}}</h1>
 
-	
 	{% for categorie in categories %}
 		<p>titre article: {{categorie.articletitle}}</p>
 		<p>texte article: {{categorie.articletext}}</p>
 		<p>date article: {{categorie.articledate|date()}}</p>
 		<p> author: {{categorie.username}}</p>
-		
+
 	{% endfor %}
 
 {% endblock %}

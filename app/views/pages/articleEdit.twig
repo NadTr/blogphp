@@ -2,30 +2,26 @@
 
 
 {% block content %}
-
-<p>Formulaire de edit</p>
-
-<form method="post" action="{{path_for('update', {'id':id})}}">
-	<input type="text" class="form-control" id="formGroupExampleInput" name="title" value="{{article.title}}">
-	<textarea name="text" class="form-control">{{article.text}}</textarea>
-	<input type="text" name="date" value="{{article.date}}" >
+<form id="formEditArt" method="post" action="{{path_for('update', {'id':id})}}">
+	<h2 id="titleEditArt">Edit article</h2>
+	<input class="form-control" type="text" class="form-control" id="formGroupExampleInput" name="title" value="{{article.title}}">
+	<textarea id="textaEditArt" class="form-control" name="text" class="form-control">{{article.text}}</textarea>
+	<input class="form-control" type="text" name="date" value="{{article.date}}" >
 
 	{% for categorie in categories %}
 
-	<input type="checkbox" name="categories[]" value={{categorie.id}} 
-	
+	<input type="checkbox" name="categories[]" value={{categorie.id}}
+
 		{% for catarticle in catarticles %}
-			{% if categorie.id == catarticle.categorie %} 
-				checked 
-			{% endif %} 
+			{% if categorie.id == catarticle.categorie %}
+				checked
+			{% endif %}
 		{% endfor %}
 		>{{categorie.name }}
-	{% endfor %} 
-	
-	<input type="hidden" name="_METHOD" value="put"/> 
-	<input type="submit" name="add article">
+	{% endfor %}<br/>
+
+	<input type="hidden" name="_METHOD" value="put"/>
+	<input id ="buttonEditArt" class="btn btn-primary btn-sm ml-auto" type="submit" name="add article">
 </form>
 
-
 {% endblock %}
-
