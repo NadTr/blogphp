@@ -10,7 +10,7 @@ use \PDO;
 
 class ProfileController extends Controller {
 
-	public function diplayProfile(Request $request, Response $response){
+	public function diplayProfile(Request $request, Response $response, array $res){
 		$id = $_SESSION['id'];
 		$stmt = $this->container->db->prepare('SELECT firstname, lastname, username, email FROM users WHERE id =:id');
 		$stmt->bindParam("id", $id);
@@ -28,7 +28,7 @@ class ProfileController extends Controller {
 		$this->render($response,'pages/editprofile.twig', $res);
 	}
 
-	public function submitchanges(Request $request, Response $response, $args){
+	public function submitchanges(Request $request, Response $response, array $args){
 
 		$id = $_SESSION['id'];
 		$firstname = $request->getParsedBody()['firstname'];

@@ -8,7 +8,7 @@ use Slim\Http\Response;
 class PagesController extends Controller {
 
 
-	public function home(Request $request, Response $response){
+	public function home(Request $request, Response $response, array $args){
 		$articles = $this->container->db->query('
 			SELECT
 				articles.title as title,
@@ -42,9 +42,7 @@ class PagesController extends Controller {
 				}
 			}
 		}
-		$categoriesAll = $this->container->db->query('
-			SELECT*
-			FROM categories ')->fetchAll();
+
 		
 		$comments = $this->container->db->query('
 			SELECT
@@ -61,9 +59,70 @@ class PagesController extends Controller {
 			')->fetchAll();
 		$args['articles'] = $articles;
 		$args['comments'] = $comments;
-		$args['categoriesAll']= $categoriesAll;
+		
 		
 		$this->render($response,'pages/home.twig', $args);
 	}
+
+	public function displaycat (Request $request, Response $response, array $args){
+
+		$id = $args['id']; //checks _GET [IS PSR-7 compliant]
+		$categories = $this->container->db->prepare('
+			
+			SELECT article, 
+				   categorie, 
+				   title as articletitle, 
+				   text as articletext, 
+				   date as articledate, 
+				   author as authorid, 
+				   username, 
+				   name
+
+			FROM categoriesarticles
+			inner join articles on article = articles.id
+			inner join users on author = users.id
+			inner join categories on categorie = categories.id
+			WHERE categorie=:id');
+
+		$categories->bindParam("id", $id);
+		$categories->execute();
+		$args=$categories->fetch();
+		
+		$args['categories'] = $categories;
+
+		$this->render($response,'pages/categories.twig', $args);
+
+	}
+
+	public function displayauthor (Request $request, Response $response, array $args){
+
+		$id = $args['id']; //checks _GET [IS PSR-7 compliant]
+		$authors = $this->container->db->prepare('
+			
+			SELECT article, 
+				   categorie, 
+				   title as articletitle, 
+				   text as articletext, 
+				   date as articledate, 
+				   author as authorid, 
+				   username, 
+				   name
+			FROM categoriesarticles
+			inner join articles on article = articles.id
+			inner join users on author = users.id
+			inner join categories on categorie = categories.id
+			WHERE author=:id');
+
+		$authors->bindParam("id", $id);
+		$authors->execute();
+		$args=$authors->fetch();
+		
+		$args['authors'] = $authors;
+
+		$this->render($response,'pages/authors.twig', $args);
+
+
+	}
+
 
 }
