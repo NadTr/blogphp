@@ -86,9 +86,9 @@ class PagesController extends Controller {
 
 		$categories->bindParam("id", $id);
 		$categories->execute();
-		$args=$categories->fetch();
+		$res=$categories->fetchAll();
 		
-		$args['categories'] = $categories;
+		$args['categories'] = $res;
 
 		$this->render($response,'pages/categories.twig', $args);
 
@@ -115,9 +115,9 @@ class PagesController extends Controller {
 
 		$authors->bindParam("id", $id);
 		$authors->execute();
-		$args=$authors->fetch();
+		$res=$authors->fetchAll();
 		
-		$args['authors'] = $authors;
+		$args['authors'] = $res;
 
 		$this->render($response,'pages/authors.twig', $args);
 
