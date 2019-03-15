@@ -39,6 +39,18 @@ $container['view'] = function ($container) {
     $router = $container->get('router');
     $uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
     $view->addExtension(new Slim\Views\TwigExtension($router, $uri));
+
+    $categories = $container->db->query('
+            SELECT *
+            FROM categories ')->fetchAll();
+    $authors = $container->db->query('
+            SELECT *
+            FROM users
+            WHERE permission <= 2')->fetchAll();
+
+    $view->getEnvironment()->addGlobal("categoriesAll", $categories);
+    $view->getEnvironment()->addGlobal("authorsAll", $authors);
+
     $view->offsetSet('session', $_SESSION);
     
     return $view;
