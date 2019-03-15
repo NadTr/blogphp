@@ -6,17 +6,18 @@
 <p>Formulaire de edit</p>
 
 <form method="post" action="{{path_for('userAdminUpdate', {'id':users.id})}}">
-	<input type="texte" name="username" value="{{users.username}}">
-	<input type="texte" name="lastname" value="{{users.lastname}}">
-	<input type="texte" name="firstname" value="{{users.firstname}}">
-	<input type="texte" name="permission" value="{{users.permission}}">
-	<input type="texte" name="email" value="{{users.email}}">
+	<p>username</p><input type="texte" name="username" value="{{users.username}}">
+	<p>lastname: </p><input type="texte" name="lastname" value="{{users.lastname}}">
+	<p>firstname:</p><input type="texte" name="firstname" value="{{users.firstname}}">
+	<p>email</p><input type="texte" name="email" value="{{users.email}}">
+	
+	<input type="radio" name="checkbox" value="{{users.permission}}" {% if users.permission == 1 %}	checked {% endif %}> <label for="permission"> Admin:</label>
+	<input type="radio" name="checkbox" value="{{users.permission}}"{% if users.permission == 2 %}	checked {% endif %}> <label for="permission"> Auteur:</label>
+	<input type="radio" name="checkbox" value="{{users.permission}}"{% if users.permission == 3 %}	checked {% endif %}> <label for="permission"> Visiteur:</label>
 
 	<input type="hidden" name="_METHOD" value="put"/> 
 	<input type="submit" name="add user">
 </form>
-
-
 
 {% endblock %}
 

@@ -4,10 +4,16 @@
 	<h1>Les users</h1>
 
 	{% for user in users %}
-		<p>prenom: {{user.firstname}}</p>
+		<p>prenom:{{user.firstname}}</p>
 		<p>nom:{{user.lastname}}</p>
+		<p>nom:{{user.username}}</p>
 		<p>mail{{user.email}}</p>
-		<p>permission{{user.permission}}</p>
+		<p>{% if user.permission == 1 %}checked {% endif %} Admin</p>
+		<p>{% if user.permission == 2 %}checked {% endif %} Auteur</p>
+		<p>{% if user.permission == 3 %}checked {% endif %} visiteur</p>
+
+	
+		
 		<p><a href="{{path_for('userAdminEdit', {'id':user.id})}}">Edit</a></p>
 		
 	{% endfor %}
