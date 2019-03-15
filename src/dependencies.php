@@ -46,12 +46,12 @@ $container['view'] = function ($container) {
     $authors = $container->db->query('
             SELECT *
             FROM users
-            WHERE permission >= 1')->fetchAll();
+            WHERE permission <= 2')->fetchAll();
 
     $view->getEnvironment()->addGlobal("categoriesAll", $categories);
     $view->getEnvironment()->addGlobal("authorsAll", $authors);
 
     $view->offsetSet('session', $_SESSION);
-    
+
     return $view;
 };
