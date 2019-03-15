@@ -2,22 +2,46 @@
 
 {% block content %}
 
-	{% if (session.permission <= 2) and (session.permission > 0) %}
-		<form method="post" action="{{path_for('add')}}">
-				<input type="text" placeholder="title" name="title">
-				<textarea name="text"></textarea>
-				{% for categorie in categoriesAll %}
-	  				<input type="checkbox" name="categories[]" value={{categorie.id}}>
-					{{ categorie.name }}
-				{% endfor %}
-				<input type="submit" name="add article">
-		</form>
-	{% endif %}
+<!--div content of articles-->
+<div class="wrap">
 
-	<!--div content of articles-->
-	<div class="wrap">
+		<!--Title and Button modal add article-->
+		<h1 id="titleBlog">Team Chokotoff</h1>
+		{% if (session.permission <= 2) and (session.permission > 0) %}
+		<div id="buttonModal" class="center"><button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block">Add an article</button></div>
+		{% endif %}
+		<!--Modal-->
+		<div class="modal fade" id="squarespaceModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+					<div class="modal-header">
+						<h3 class="modal-title" id="lineModalLabel">Add an article</h3>
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+					</div>
+				<div class="modal-body">
+	            <!-- content goes here -->
+							{% if (session.permission <= 2) and (session.permission > 0) %}
+								<form method="post" action="{{path_for('add')}}">
+										<input class="form-control" type="text" placeholder="title" name="title"><br/>
+										<textarea class="form-control" name="text"></textarea><br/>
+										{% for categorie in categoriesAll %}
+							  				<input type="checkbox" name="categories[]" value={{categorie.id}}>
+											{{ categorie.name }}
+										{% endfor %}
+										<div class="modal-footer">
+											<input class="btn btn-primary btn-sm ml-auto" type="submit" name="add article" value="Add">
+										</div>
+								</form>
+								{% endif %}
+				</div>
+
+			</div>
+		  </div>
+		</div>
+		 <!--div Article-->
 		 <div class="col-md-10" id="divArticle">
 		 		{% for article in articles %}
+				<!-- <div id="vArticle"> -->
 				<h1 id="titleArt">{{article.title}}</h1>
 				<p>{{article.text}}</p>
 				<div id="infoArt">
@@ -34,46 +58,52 @@
 			<p><a href="{{path_for('edit', {'id':article.id})}}">Edit</a></p>
 		{% endif %}
 
-	<!--COMMENTS-->
-	<h4 id="titleComment">Comments:</h4>
-	<div id="comment">
-			<!-- <h4>Comments:</h4> -->
-			{% for comment in comments %}
-				{% if comment.article == article.id %}
-				<p>titre : {{ comment.comtitle}}</p>
-				<p>texte:  {{ comment.comtext}}</p>
-				<p id="infoComment">author: {{ comment.username}}</p>
-				<p>date : {{ comment.comdate|date()}}</p>
-					{% if (session.permission <= 3) and (session.permission > 0) and (comment.commentator == session.id) %}
-					<p><a href="{{path_for('editCom', {'id':comment.comid})}}">Edit</a></p>
-					{% endif %}
-					{% if (session.permission <= 3) and (session.permission > 0) and (comment.commentator == session.id) %}
-					<form method="post" action="{{path_for('delCom', {'id':comment.comid})}}">
-							<input type="hidden" name="_METHOD" value="delete"/>
-							<input type="submit" value="Delete"/>
-					</form>
-					{% endif %}
-				{% endif %}
-			{% endfor %}
+		<!--COMMENTS-->
 
+				{% for comment in comments %}
+					{% if comment.article == article.id %}
+					<h4 id="titleComment">Comments:</h4>
+					<div id="comment">
+					<h6>Title : {{ comment.comtitle}}</h6>
+					<p>{{ comment.comtext}}</p>
+					<p class="infoP" id="infoComment">Author: {{ comment.username}}&nbsp&nbsp&nbsp&nbsp&nbsp</p>
+					<p class="infoP">Date : {{ comment.comdate|date()}}</p>
+
+						{% if (session.permission <= 3) and (session.permission > 0) and (comment.commentator == session.id) %}
+						<div class="modal-footer">
+						<form id="formDel" method="post" action="{{path_for('delCom', {'id':comment.comid})}}">
+								<p><a href="{{path_for('editCom', {'id':comment.comid})}}" class="btn btn-primary btn-sm ml-auto">Edit</a></p>
+								<input type="hidden" name="_METHOD" value="delete"/>
+								<input type="submit" value="Delete" class="btn btn-primary btn-sm ml-auto"/>
+						</form>
+
+						</div>
+						{% endif %}
+					</div>
+
+					{% endif %}
+				{% endfor %}
+
+		<!--form for add a comment-->
 		{% if (session.permission <= 3) and (session.permission > 0) %}
+		<div id="comment">
 		<form method="post" action="{{path_for('addCom')}}">
 				<div class="form-group">
-					<label for="formGroupExampleInput">title</label>
+					<label for="formGroupExampleInput">Title</label>
 					<input type="text" class="form-control" id="formGroupExampleInput" placeholder="title comment" name="title">
 				</div>
 				<div class="form-group">
 					<label for="formGroupExampleInput2">Text</label>
-					<textarea name="text" class="form-control" placeholder="text comment" ></textarea>
+					<textarea name="text" class="form-control" placeholder="text comment"></textarea>
 				</div>
 				<input type="hidden" name="art" id="art" value="{{article.id}}">
-				<input type="submit" name="add comment">
+				<input type="submit" name="add comment" value="Add a comment" class="btn btn-primary btn-sm ml-auto">
 		</form>
-		{% endif %}
-	</div>
+		</div>
 
+		{% endif %}
+		<!-- </div> -->
 		{% endfor %}
 	</div>
 </div>
-
 {% endblock %}

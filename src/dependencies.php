@@ -52,6 +52,6 @@ $container['view'] = function ($container) {
     $view->getEnvironment()->addGlobal("authorsAll", $authors);
 
     $view->offsetSet('session', $_SESSION);
-    
+
     return $view;
 };

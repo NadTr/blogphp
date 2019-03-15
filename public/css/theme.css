@@ -7184,6 +7184,19 @@ img {
 #divArticle {
   margin: 30px 0px 30px 0px; }
 
+#vArticle {
+  background: red !important; }
+
+#titleBlog {
+  text-align: center;
+  font-family: Apple Chancery, cursive; }
+
+#buttonModal {
+  text-align: right;
+  margin: auto;
+  width: 100%;
+  display: block; }
+
 #titleArt {
   color: #20c997; }
 
@@ -7205,6 +7218,15 @@ img {
 
 #infoComment {
   color: #20c997; }
+
+#comment > .infoP {
+  margin-bottom: 10px;
+  color: #375a7f;
+  display: inline-block; }
+
+#formDel p {
+  display: inline-block;
+  margin: auto; }
 
 /*--REGISTER.twig--*/
 #formreg {
@@ -7229,6 +7251,31 @@ img {
   padding: 40px 30px 40px 30px;
   width: 50%; }
 
+#line {
+  border: 2px solid black; }
+
 #dashboard {
   margin: 30px 0px 30px 0px;
   width: 50%; }
+
+#formEditArt {
+  padding: 40px 30px 40px 30px;
+  width: 50%;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.2); }
+
+#buttonEditArt {
+  margin-top: 20px; }
+
+#titleEditArt {
+  text-align: center;
+  margin-bottom: 20px; }
+
+#textaEditArt {
+  height: 200px; }
+
+#formCommentEdit {
+  padding: 40px 30px 40px 30px;
+  width: 50%;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.2); }
