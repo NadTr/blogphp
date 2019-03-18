@@ -1,7 +1,8 @@
 {% extends "layout.twig" %}
 {% block content %}
-<h1 class="text-center mt-4">Change your profile's informations</h1>
+
 <form method="post" action="{{path_for('submitchanges')}}" id="profilEdit">
+  <h1 class="text-center mt-4">Change your profile's informations</h1>
 
   <div class="form-group">
     <label for="firstname">Firstname</label>

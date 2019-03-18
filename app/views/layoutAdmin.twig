@@ -18,43 +18,18 @@
 <body>
   <!--START OF THE NAV-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="./">BlogStore</a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
-          <ul class="navbar-nav mr-auto">
-                <!--Authors in the navbar-->
-                <li class="nav-item dropdown">
-                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                   AUTHORS
-                 </a>
-                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                   <a class="dropdown-item" href="#">Author1</a>
-                   <a class="dropdown-item" href="#">Author2</a>
-                   <a class="dropdown-item" href="#">Author3</a>
-                 </div>
-               </li>
-               <!--Categories in the navbar-->
-               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  CATEGORIES
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Categorie1</a>
-                  <a class="dropdown-item" href="#">Categorie2</a>
-                  <a class="dropdown-item" href="#">Categorie3</a>
-                </div>
-               </li>
-          </ul>
-        </div>
+        <a class="navbar-brand" href="{{path_for('adminHome')}}">BlogStore</a>
+
 
       <!--username / logOut-->
       {% if session.permission >=1 %}
-      <a href="{{path_for('profile')}}" class="text-info font-weight-bold  mr-4">{{session.username}}</a>
-      <a href="{{path_for('logout')}}" class="btn btn-outline-primary">LogOut</a>
+      <a href="{{path_for('profile')}}" class="text-info font-weight-bold  ml-auto pl-8">{{session.username}}</a>
+      <a href="{{path_for('logout')}}" class="btn btn-outline-primary float-right">LogOut</a>
 
       <!--logIn / Register-->
       {% else %}
-      <a href="{{path_for('login')}}" class="btn btn-outline-primary">Login</a>
-      <a href="{{path_for('register')}}" class="btn btn-outline-secondary ml-1" >Register</a>
+      <a href="{{path_for('login')}}" class="btn btn-outline-primary mr-auto">Login</a>
+      <a href="{{path_for('register')}}" class="btn btn-outline-secondary float-right" >Register</a>
 
       {% endif %}
     </nav>

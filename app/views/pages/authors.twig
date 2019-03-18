@@ -1,16 +1,15 @@
 {% extends "layout.twig" %}
 
 {% block content %}
-
 <h1>{{username}}</h1>
-
 	{% for author in authors %}
 
-		<p>titre article: {{author.articletitle}}</p>
-		<p>texte article: {{author.articletext}}</p>
-		<p>date article: {{author.articledate|date()}}</p>
-
+	<div id="artAuthor">
+			<h3>{{author.articletitle}}</h3>
+			<p>Article: {{author.articletext}}</p>
+			<p><i><small>Date: {{author.articledate|date()}}</small></i></p>
+			<div id="lineSep"></div>
+	</div>
 	{% endfor %}
-
 
 {% endblock %}
