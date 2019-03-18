@@ -38,7 +38,6 @@ CREATE TABLE "categoriesarticles" (
 
 CREATE TABLE "comments" (
     "id" SERIAL PRIMARY KEY NOT NULL,
-    "title" character varying(50) NOT NULL,
     "date" timestamp NOT NULL,
     "text" text NOT NULL,
     "article" integer NOT NULL,
@@ -51,13 +50,25 @@ INSERT INTO "users" ( "firstname", "lastname", "username", "pass", "permission",
 ('Admin',   'Admin',  'Admin',    '$2y$10$JxEvKR7gEj5o07kEBU9O7O4oPzVkFesUyT78EnB72OHp3XDJk9TeO',    1,  'zofzfoef@fpoefe.xy');
 
 INSERT INTO "articles" ( "title", "text", "date", "author") VALUES
+( 'Le Lorem ipsum',    'Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum, qui permet donc de faire office de texte d''attente. L''avantage de le mettre en latin est que l''opérateur sait au premier coup d''oeil que la page contenant ces lignes n''est pas valide, et surtout l''attention du client n''est pas dérangée par le contenu, il demeure concentré seulement sur l''aspect graphique.',  '2019-02-27 08:54:16.774074',   1),
+( 'Le Lorem ipsum',    'Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum, qui permet donc de faire office de texte d''attente. L''avantage de le mettre en latin est que l''opérateur sait au premier coup d''oeil que la page contenant ces lignes n''est pas valide, et surtout l''attention du client n''est pas dérangée par le contenu, il demeure concentré seulement sur l''aspect graphique.',  '2019-02-27 08:54:16.774074',   1),
+( 'Le Lorem ipsum',    'Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum, qui permet donc de faire office de texte d''attente. L''avantage de le mettre en latin est que l''opérateur sait au premier coup d''oeil que la page contenant ces lignes n''est pas valide, et surtout l''attention du client n''est pas dérangée par le contenu, il demeure concentré seulement sur l''aspect graphique.',  '2019-02-27 08:54:16.774074',   1),
+( 'Le Lorem ipsum',    'Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum, qui permet donc de faire office de texte d''attente. L''avantage de le mettre en latin est que l''opérateur sait au premier coup d''oeil que la page contenant ces lignes n''est pas valide, et surtout l''attention du client n''est pas dérangée par le contenu, il demeure concentré seulement sur l''aspect graphique.',  '2019-02-27 08:54:16.774074',   1),
 ( 'Le Lorem ipsum',    'Généralement, on utilise un texte en faux latin (le texte ne veut rien dire, il a été modifié), le Lorem ipsum ou Lipsum, qui permet donc de faire office de texte d''attente. L''avantage de le mettre en latin est que l''opérateur sait au premier coup d''oeil que la page contenant ces lignes n''est pas valide, et surtout l''attention du client n''est pas dérangée par le contenu, il demeure concentré seulement sur l''aspect graphique.',  '2019-02-27 08:54:16.774074',   1);
 
 INSERT INTO "categories" ( "name") VALUES
-('Du blabla');
+('Du blabla'),
+('Du texte'),
+('Superbe catégorie'),
+('Belle catégorie');
 
 INSERT INTO "categoriesarticles" ("categorie", "article") VALUES
-(1, 1);
+(1, 3),
+(2,1),
+(3, 1),
+(4, 2),
+(2, 5),
+(1, 4);
 
-INSERT INTO "comments" ( "title", "date", "text", "article", "commentator") VALUES
-( 'Mon beau commentaire',  '2019-02-27 09:06:45.553865',   'J''ai bien aimé votre texte.',  1,  1);
+INSERT INTO "comments" ("date", "text", "article", "commentator") VALUES
+('2019-02-27 09:06:45.553865',   'J''ai bien aimé votre texte.',  1,  1);
