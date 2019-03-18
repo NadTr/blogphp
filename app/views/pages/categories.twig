@@ -3,12 +3,16 @@
 {% block content %}
 <h1>{{name}}</h1>
 
+	<div id="artAuthor">
 	{% for categorie in categories %}
-		<p>titre article: {{categorie.articletitle}}</p>
-		<p>texte article: {{categorie.articletext}}</p>
-		<p>date article: {{categorie.articledate|date()}}</p>
-		<p> author: {{categorie.username}}</p>
+			<h3>{{categorie.articletitle}}</h3>
+			<p>Article: {{categorie.articletext}}</p>
+			<p><i><small>Date: {{categorie.articledate|date()}}</small></i></p>
+			<p>Author: {{categorie.username}}</p>
+			<div id="lineSep"></div>
+			{% endfor %}
+	</div>
 
-	{% endfor %}
+
 
 {% endblock %}

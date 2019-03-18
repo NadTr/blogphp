@@ -7168,7 +7168,7 @@ a.text-dark:hover, a.text-dark:focus {
   .list-group-item-action .list-group-item-heading {
     color: #fff; }
 
-/*---LAYOUT.twig---*/
+/*----------------------LAYOUT.twig---------------------*/
 img {
   height: 400px !important;
   object-fit: cover; }
@@ -7176,16 +7176,13 @@ img {
 #titleNav {
   font-size: 26px; }
 
-/*--HOME.twig--*/
+/*-----------------------HOME.twig----------------------*/
 .wrap {
   background-color: rgba(0, 0, 0, 0.2);
   padding: 30px; }
 
 #divArticle {
   margin: 30px 0px 30px 0px; }
-
-#vArticle {
-  background: red !important; }
 
 #titleBlog {
   text-align: center;
@@ -7216,9 +7213,6 @@ img {
 #titleComment {
   margin-left: 30px; }
 
-#infoComment {
-  color: #20c997; }
-
 #comment > .infoP {
   margin-bottom: 10px;
   color: #375a7f;
@@ -7228,36 +7222,38 @@ img {
   display: inline-block;
   margin: auto; }
 
-/*--REGISTER.twig--*/
+/*----------------------REGISTER.twig---------------------*/
 #formreg {
   padding: 40px 30px 40px 30px;
   width: 50%;
   margin: auto;
   background-color: rgba(0, 0, 0, 0.2); }
 
-/*--LOGIN.twig--*/
+/*------------------------LOGIN.twig-----------------------*/
 #formlog {
   padding: 40px 30px 40px 30px;
   width: 50%;
   margin: auto;
   background-color: rgba(0, 0, 0, 0.2); }
 
+/*-----------------------PROFILE.twig----------------------*/
 #profile {
   padding: 40px 30px 40px 30px; }
 
+/*---------------------PROFILEEDIT.twig--------------------*/
 #profilEdit {
   margin: auto;
   padding: 30px;
   padding: 40px 30px 40px 30px;
-  width: 50%; }
+  width: 50%;
+  background-color: rgba(0, 0, 0, 0.2); }
 
-#line {
-  border: 2px solid black; }
-
+/*------------------------ADMIN.twig-----------------------*/
 #dashboard {
   margin: 30px 0px 30px 0px;
   width: 50%; }
 
+/*---------------------ARTICLEEDIT.twig--------------------*/
 #formEditArt {
   padding: 40px 30px 40px 30px;
   width: 50%;
@@ -7274,8 +7270,16 @@ img {
 #textaEditArt {
   height: 200px; }
 
+/*---------------------COMMENTEDIT.twig--------------------*/
 #formCommentEdit {
   padding: 40px 30px 40px 30px;
   width: 50%;
   margin: auto;
   background-color: rgba(0, 0, 0, 0.2); }
+
+/*------------------------AUTHORS.twig-----------------------*/
+#lineSep {
+  border: 1px solid white; }
+
+#artAuthor {
+  margin: 30px 0 30px 0; }

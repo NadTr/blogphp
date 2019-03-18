@@ -6,7 +6,7 @@
 <div class="wrap">
 
 		<!--Title and Button modal add article-->
-		<h1 id="titleBlog">Team Chokotoff</h1>
+		<h1 id="titleBlog">Chokotoff Team</h1>
 		{% if (session.permission <= 2) and (session.permission > 0) %}
 		<div id="buttonModal" class="center"><button data-toggle="modal" data-target="#squarespaceModal" class="btn btn-primary center-block">Add an article</button></div>
 		{% endif %}
@@ -66,7 +66,7 @@
 					<div id="comment">
 					<h6>Title : {{ comment.comtitle}}</h6>
 					<p>{{ comment.comtext}}</p>
-					<p class="infoP" id="infoComment">Author: {{ comment.username}}&nbsp&nbsp&nbsp&nbsp&nbsp</p>
+					<p class="infoP">Author: {{ comment.username}}&nbsp&nbsp&nbsp&nbsp&nbsp</p>
 					<p class="infoP">Date : {{ comment.comdate|date()}}</p>
 
 						{% if (session.permission <= 3) and (session.permission > 0) and (comment.commentator == session.id) %}

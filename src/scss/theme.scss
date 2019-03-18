@@ -3,37 +3,39 @@
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 @import "_bootswatch.scss";
 
-/*---LAYOUT.twig---*/
+/*----------------------LAYOUT.twig---------------------*/
+
 //header img
 img {
   height:400px !important;
   object-fit: cover;
 }
 
-//Title of the blog in the nav
+//title of the blog in the nav
 #titleNav {
   font-size:26px;
 }
 
-/*--HOME.twig--*/
+/*-----------------------HOME.twig----------------------*/
+
+//dark gray background
 .wrap {
   background-color:rgba(0, 0, 0, 0.2);
   padding:30px;
 }
 
+//margins for article content
 #divArticle {
   margin:30px 0px 30px 0px;
 }
 
-#vArticle {
-  background:red!important;
-}
-
+//title of the blog "Chokotoff Team"
 #titleBlog {
   text-align: center;
   font-family: Apple Chancery, cursive;
 }
 
+//button for the add article modal
 #buttonModal {
   text-align:right;
   margin:auto;
@@ -41,16 +43,19 @@ img {
   display: block;
 }
 
+//title of articles
 #titleArt {
   color:#20c997;
 }
 
+//informations (date, authors, cat.)
 #infoArt p{
   margin-bottom:10px;
   color:#375a7f;
   display:inline-block;
 }
 
+//comments
 #comment {
   font-size:13px;
   margin-left:30px;
@@ -60,26 +65,26 @@ img {
   margin-bottom:50px;
 }
 
+//titles comments
 #titleComment {
   margin-left:30px;
 }
 
-#infoComment {
-  color:#20c997;
-}
-
+//informations comments (date, authors, cat.)
 #comment > .infoP {
   margin-bottom:10px;
   color:#375a7f;
   display:inline-block;
 }
 
+//delete button placement
 #formDel p{
   display:inline-block;
   margin:auto;
 }
 
-/*--REGISTER.twig--*/
+/*----------------------REGISTER.twig---------------------*/
+//form placement
 #formreg {
   padding:40px 30px 40px 30px;
   width:50%;
@@ -87,7 +92,8 @@ img {
   background-color:rgba(0, 0, 0, 0.2);
 }
 
-/*--LOGIN.twig--*/
+/*------------------------LOGIN.twig-----------------------*/
+//form placement
 #formlog {
   padding:40px 30px 40px 30px;
   width:50%;
@@ -95,26 +101,29 @@ img {
   background-color:rgba(0, 0, 0, 0.2);
 }
 
+/*-----------------------PROFILE.twig----------------------*/
+//profile placement
 #profile {
   padding:40px 30px 40px 30px;
 }
 
+/*---------------------PROFILEEDIT.twig--------------------*/
 #profilEdit {
   margin:auto;
   padding:30px;
   padding:40px 30px 40px 30px;
   width:50%;
+  background-color:rgba(0, 0, 0, 0.2);
 }
 
-#line {
-  border:2px solid black;
-}
-
+/*------------------------ADMIN.twig-----------------------*/
 #dashboard {
   margin:30px 0px 30px 0px;
   width:50%;
 }
 
+/*---------------------ARTICLEEDIT.twig--------------------*/
+//form
 #formEditArt {
   padding:40px 30px 40px 30px;
   width:50%;
@@ -122,22 +131,36 @@ img {
   background-color:rgba(0, 0, 0, 0.2);
 }
 
+//submit button for edit articles
 #buttonEditArt {
   margin-top:20px;
 }
 
+//title of the form
 #titleEditArt {
   text-align: center;
   margin-bottom:20px;
 }
 
+//height of the textarea for article edit
 #textaEditArt {
   height:200px;
 }
 
+/*---------------------COMMENTEDIT.twig--------------------*/
+//form for comment articles
 #formCommentEdit {
   padding:40px 30px 40px 30px;
   width:50%;
   margin:auto;
   background-color:rgba(0, 0, 0, 0.2);
+}
+
+/*------------------------AUTHORS.twig-----------------------*/
+#lineSep {
+  border:1px solid white;
+}
+
+#artAuthor {
+  margin: 30px 0 30px 0;
 }
