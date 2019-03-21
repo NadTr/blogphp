@@ -23,8 +23,8 @@ You need to run `composer install` and  `npm install`to install the dependencies
 
 In 3 differents terminal tabs, run
 * `docker-compose up` 
-*`gulp` 
-*`php -S localhost:8080 -t public`
+* `gulp` 
+* `php -S localhost:8080 -t public`
 
 ### Use the website
 
