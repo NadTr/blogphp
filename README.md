@@ -7,14 +7,13 @@ A blog created with PHP using Slim framework and Twig with CRUD Method and a Boo
 
 ## Getting Started
 CLone the repository with 
+`git clone https://github.com/marween/blogphp.git` 
 
 ### Prerequisites
 
-First, you need to run 'composer install' to install the dependencies.
-Then run 'docker-compose up' and in a new tab 'cd public' and then 'php -S localhost:8080'
+Be sure you have PHP and composer installed.
 
-
-
+You need to run `composer install` to install the dependencies.
 
 ### Installing
 
@@ -24,6 +23,8 @@ The user registered is the admin, and you can log in with
 
 
 ### Deployement
+
+Then run `docker-compose up` and in a new tab `cd public` and then `php -S localhost:8080`
 
 
 ### Known issues
