@@ -13,19 +13,24 @@ CLone the repository with
 
 Be sure you have PHP and composer installed.
 
-You need to run `composer install` to install the dependencies.
 
 ### Installing
 
-The user registered is the admin, and you can log in with
-* username : Admin
-* password : j'aiunmotdepassegenial
+You need to run `composer install` and  `npm install`to install the dependencies.
 
 
 ### Deployement
 
-Then run `docker-compose up` and in a new tab `cd public` and then `php -S localhost:8080`
+In 3 differents terminal tabs, run
+* `docker-compose up` 
+*`gulp` 
+*`php -S localhost:8080 -t public`
 
+### Use the website
+
+The user registered is the admin, and you can log in with
+* username : Admin
+* password : j'aiunmotdepassegenial
 
 ### Known issues
 
