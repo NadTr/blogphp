@@ -42,10 +42,10 @@ The user registered is the admin, and you can log in with
 
 ## Team
 
-* [Nadine T.] (https://github.com/NadTr)
-* [Anne-Magali S.] (https://github.com/marween)
-* [Jonathan B.] (https://github.com/odaeyes)
-* [Pauline R.] (https://github.com/PaulineRoppe)
+* [Nadine T.](https://github.com/NadTr)
+* [Anne-Magali S.](https://github.com/marween)
+* [Jonathan B.](https://github.com/odaeyes)
+* [Pauline R.](https://github.com/PaulineRoppe)
 
 
 # blogphp
